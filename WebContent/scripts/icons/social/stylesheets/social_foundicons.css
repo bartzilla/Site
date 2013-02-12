@@ -147,3 +147,9 @@
 .foundicon-wordpress:before {
   content: "\f01d";
 }
+
+.stackoverflow{
+background: transparent url("favicon11.ico")
+scroll no-repeat left center;
+padding: 0px 0px 0px 15px;
+}
