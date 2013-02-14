@@ -1,3 +1,6 @@
 [submodule "src"]
 	path = src
 	url = /Users/ciprianosanchez/Documents/workspace/Site/web
+[submodule "submodule"]
+	path = submodule
+	url = /Users/ciprianosanchez/Documents/workspace/Site/web
