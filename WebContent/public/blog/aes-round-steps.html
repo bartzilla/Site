@@ -1,0 +1,388 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Cipriano Sanchez - AES Round Steps</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link href="../scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../scripts/bootstrap/css/bootstrap-responsive.min.css"
+	rel="stylesheet">
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<!-- Icons -->
+<link href="../scripts/icons/general/stylesheets/general_foundicons.css"
+	media="screen" rel="stylesheet" type="text/css" />
+<link href="../scripts/icons/social/stylesheets/social_foundicons.css"
+	media="screen" rel="stylesheet" type="text/css" />
+<!--[if lt IE 8]>
+        <link href="scripts/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="scripts/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
+    <![endif]-->
+<link rel="stylesheet"
+	href="../scripts/fontawesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+        <link rel="stylesheet" href="scripts/fontawesome/css/font-awesome-ie7.min.css">
+    <![endif]-->
+
+
+
+<link href="http://fonts.googleapis.com/css?family=Zeyada"
+	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Helvetica+Neue"
+	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Terminal+Dosis+Light"
+	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Abel"
+	rel="stylesheet" type="text/css">
+
+<link href="../styles/custom.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="pageBody">
+
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span5">
+
+				<div id="divLogo">
+					<a href="../index.html" id="divSiteTitle">Cipriano Sanchez</a><br />
+					<a href="../index.html" id="divTagLine">Site & Blog</a>
+				</div>
+
+			</div>
+			<div class="span7">
+
+				<div id="divMenuRight" class="pull-right">
+					<div class="navbar">
+						<button type="button"
+							class="btn btn-navbar-highlight btn-large btn-primary"
+							data-toggle="collapse" data-target=".nav-collapse">
+							NAVIGATION <span class="icon-chevron-down icon-white"></span>
+						</button>
+						<div class="nav-collapse collapse">
+							<ul class="nav nav-pills ddmenu">
+								<li class="dropdown active"><a href="index.html">Home</a></li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle">Site
+										<b class="caret"></b>
+								</a>
+									<ul class="dropdown-menu">
+										<li><a href="#">Resume</a></li>
+										<li><a href="../blog.html">Blog</a></li>
+										<li><a href="http://instagram.com/_bartzilla"
+											target="_blank">Instagram</a></li>
+									</ul></li>
+								<li class="dropdown"><a href="../blog.html">Blog</a></li>
+								<li class="dropdown"><a href="../about.html">About</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="divBoxed" class="container">
+
+		<div class="transparent-bg"
+			style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; zoom: 1;"></div>
+
+		<div class="divPanel notop nobottom">
+			<div class="row-fluid">
+				<div class="span12">
+					<div id="contentInnerSeparator"></div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="divPanel notop page-content">
+
+			<div class="breadcrumbs">
+				<a href="../index.html">Home</a>&nbsp;/&nbsp;<a href="../blog.html">Blog</a>&nbsp;/&nbsp;
+				<span>AES Round Steps</span>
+			</div>
+
+			<div class="row-fluid">
+
+				<h1>AES Round Steps</h1>
+				<div align="justify">
+					The AES algorithm encrypts data by executing 4 different
+					operations; modifying gradually the state matrix until the
+					ciphertext is obtained. The operations are: AddRoundKey, SubBytes,
+					ShiftRows, MixColumns and an extra operation called the KeySchdule
+					which is in charge to expand the original key for each AES round.
+					This operations are going to be executed N times depending on the
+					key length.<br />
+					<br />
+					<strong>AddRoundKey:</strong> This transformation applies a bitwise
+					XOR between the elements of the State array and the elements of the
+					RoundKey. The RoundKey is obtained from the cipher key by computing
+					the KeySchedule which will be explained later. The State and the
+					RoundKey are of the same size where “a” is the current state, “k”
+					the round key and “b” is the next state. AddRoundKey is denoted by:
+				</div>
+				<div align="justify">
+					<strong><img alt="" border="0"
+						id="BLOGGER_PHOTO_ID_5536837697072775906"
+						src="http://4.bp.blogspot.com/_urB2DqfA9zs/TNbMjNEDwuI/AAAAAAAAAz4/VTp6yZkme9Y/s320/Untitled.png"
+						style="cursor: hand; display: block; height: 249px; margin: 0px auto 10px; text-align: center; width: 315px;" /></strong>
+				</div>
+				<strong>SubBytes:</strong> This step provides non linearity byte
+				substitution; it operates independently on each byte of the state
+				matrix using a look up table, called the Rijndael S-box. The design
+				ofthe S-box is thought to be resistant to attacks made by
+				differential and linear cryptanalysis and algebraic manipulation,
+				and has been extensively analyzed during the competition to verify
+				its security. It is constructed by the following two
+				transformations: <br />
+				<ol>
+					<li><div align="justify">Compute the multiplicative
+							inverse in the finite field GF(2^8)</div></li>
+					<li><div align="justify">Apply a bitwise affine
+							transformation over GF(2), which is a polynomial multiplication
+							by a constant matrix using the inversed byte, followed by a XOR
+							operation with a constant byte</div></li>
+				</ol>
+				<div align="justify">
+					<img alt="" border="0" id="BLOGGER_PHOTO_ID_5536848030183265618"
+						src="http://4.bp.blogspot.com/_urB2DqfA9zs/TNbV8q5lFVI/AAAAAAAAA0o/d17sD3ya-U4/s400/Untitled.png"
+						style="cursor: hand; display: block; height: 29px; margin: 0px auto 10px; text-align: center; width: 400px;" />
+				</div>
+				The constant matrix and the constant byte are provided by the AES
+				Standard as described in FIPS 197. On image 2 we can see the
+				constant matrix and the constant byte, where b0….b7 is the
+				multiplicative inverse as a vector <br />
+				<div align="justify">
+					<img alt="" border="0" id="BLOGGER_PHOTO_ID_5536852875744448226"
+						src="http://4.bp.blogspot.com/_urB2DqfA9zs/TNbaWuBZDuI/AAAAAAAAA0w/vHsvZZnbtFI/s400/Untitled.png"
+						style="cursor: hand; display: block; height: 184px; margin: 0px auto 10px; text-align: center; width: 371px;" />
+				</div>
+				<div align="justify">
+					After doing the previous steps we will obtain the Rijndael S-Box.
+					Image 4 shows the S-Box generated; afterwards, each byte of the
+					state table is updated. For example if <em>state</em>(i,j)={3D} the
+					new value is determined by the intersection of the row with value 3
+					and the column with value D, providing an output of <em>state'</em>(i,j)=27.
+				</div>
+				<img alt="" border="0" id="BLOGGER_PHOTO_ID_5536854916415010434"
+					src="http://1.bp.blogspot.com/_urB2DqfA9zs/TNbcNgHKtoI/AAAAAAAAA04/ZBs2Wh9JHWs/s400/Untitled.png"
+					style="cursor: hand; display: block; height: 282px; margin: 0px auto 10px; text-align: center; width: 400px;" /><br />
+				<div align="justify">
+					<strong>ShiftRows</strong>: This operation shifts each row of the <em>state</em>
+					cyclically to the left depending on the row index. First row is not
+					shifted, second row is shifted one position, third row two
+					positions and finally the fourth row is shifted three positions to
+					the left.
+				</div>
+				<br />
+				<div align="justify">
+					<img alt="" border="0" id="BLOGGER_PHOTO_ID_5536859922571879714"
+						src="http://2.bp.blogspot.com/_urB2DqfA9zs/TNbgw5f-ZSI/AAAAAAAAA1A/wiA_D8wu6s4/s400/320px-AES-ShiftRows_svg.png"
+						style="cursor: hand; display: block; height: 119px; margin: 0px auto 10px; text-align: center; width: 320px;" />
+				</div>
+				<div align="justify">
+					<strong>MixColumns:</strong> The MixColumns step along with the
+					ShiftRows step is the primary source of diffusion in AES.
+					MixColumns performs a column by column transformation, treating
+					each column of the <em>state</em> as polynomials over GF (2^8).
+					Each polynomial or column is then multiplied with a fixed
+					polynomial:
+				</div>
+				<img alt="" border="0" id="BLOGGER_PHOTO_ID_5537902127491291730"
+					src="http://4.bp.blogspot.com/_urB2DqfA9zs/TNqUpNX_mlI/AAAAAAAAA1Q/gr2Dqjl59Ek/s400/Untitled.png"
+					style="cursor: hand; display: block; height: 26px; margin: 0px auto 10px; text-align: center; width: 307px;" />
+				<br />
+				<div align="justify">this latter polynomial is expressed as a
+					fixed matrix, the operation can be written as matrix multiplication
+					as follows:</div>
+				<a
+					href="http://3.bp.blogspot.com/_urB2DqfA9zs/TNqVRO8Oj3I/AAAAAAAAA1Y/T0ybnS_tR0g/s1600/Untitled.png"><img
+					alt="" border="0" id="BLOGGER_PHOTO_ID_5537902815106469746"
+					src="http://3.bp.blogspot.com/_urB2DqfA9zs/TNqVRO8Oj3I/AAAAAAAAA1Y/T0ybnS_tR0g/s400/Untitled.png"
+					style="cursor: hand; display: block; height: 98px; margin: 0px auto 10px; text-align: center; width: 283px;" /></a>
+				<br />
+				<div align="justify"></div>
+				<div align="justify">
+					Each column of the <em>state </em>is then multiplied by the fixed
+					polynomial expressed as a matrix and and the next <em>state</em> is
+					obtained <a
+						href="http://3.bp.blogspot.com/_urB2DqfA9zs/TNqV_QPhP3I/AAAAAAAAA1g/O_F-epaDJD8/s1600/Untitled.png"><img
+						alt="" border="0" id="BLOGGER_PHOTO_ID_5537903605729804146"
+						src="http://3.bp.blogspot.com/_urB2DqfA9zs/TNqV_QPhP3I/AAAAAAAAA1g/O_F-epaDJD8/s400/Untitled.png"
+						style="cursor: hand; display: block; height: 166px; margin: 0px auto 10px; text-align: center; width: 309px;" /></a>
+				</div>
+				<div align="justify">
+					<strong>KeySchedule:</strong> The AES algorithm takes the cipher
+					key and performs a key schedule also referred to as a key expansion
+					to generate keys for each AES round. The number of round keys
+					necessary to encrypt one block of information is related to the key
+					length because this will determine the number of rounds. For
+					example, a key length of 128 bits will require in total 11 round
+					keys, 1 for the initial round, 9 for standard rounds and 1 for the
+					final round. The key schedule is therefore a method to extend the
+					cipher key, where it can be seen as an array of 32 bit columns
+					numbered from 0 to 43. The i-th column of the cipher key <em>k</em>
+					matrix is denoted by Wi. The first four columns are filled with the
+					given cipher key
+				</div>
+				<div align="justify"></div>
+				<div align="justify">
+					<a
+						href="http://1.bp.blogspot.com/_urB2DqfA9zs/TNqZcpGu-pI/AAAAAAAAA1w/It4tN-zO9Zg/s1600/Untitled.png"><img
+						alt="" border="0" id="BLOGGER_PHOTO_ID_5537907409154931346"
+						src="http://1.bp.blogspot.com/_urB2DqfA9zs/TNqZcpGu-pI/AAAAAAAAA1w/It4tN-zO9Zg/s400/Untitled.png"
+						style="cursor: hand; display: block; height: 74px; margin: 0px auto 10px; text-align: center; width: 400px;" /></a><br />Columns
+					in position that are multiple of 4 are calculated by:
+				</div>
+				<ul>
+					<li><div align="justify">Applying a rotation operation
+							and SubBytes transformation to the previous column W(i-1)</div></li>
+					<li><div align="justify">Adding this result to the
+							column 4 positions earlier W(i-4) plus a round constant Rcon.</div></li>
+				</ul>
+				<div align="justify">The reminding 3 columns are calculated by
+					adding the previous column W(i-1) with the column 4 positions
+					earlier W(i-4)</div>
+
+
+				<br />
+
+				<div align="justify" class="MsoNormal" style="margin: 0in 0in 10pt;"></div>
+
+				<!-- AddThis Button BEGIN -->
+				<div
+					class="addthis_toolbox addthis_default_style addthis_32x32_style">
+					<a class="addthis_button_preferred_1"></a> <a
+						class="addthis_button_preferred_2"></a> <a
+						class="addthis_button_preferred_3"></a> <a
+						class="addthis_button_preferred_4"></a> <a
+						class="addthis_button_compact"></a> <a
+						class="addthis_counter addthis_bubble_style"></a>
+				</div>
+				<script type="text/javascript">
+					var addthis_config = {
+						"data_track_addressbar" : true
+					};
+				</script>
+				<script type="text/javascript"
+					src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-511e7f534b00ef7b"></script>
+				<!-- AddThis Button END -->
+
+
+			</div>
+
+
+
+
+
+			<div id="footerInnerSeparator"></div>
+		</div>
+	
+
+	<div id="footerOuterSeparator"></div>
+
+	<div id="divFooter" class="footerArea">
+
+		<div class="divPanel">
+
+			<div class="row-fluid">
+				<div class="span3" id="footerArea1">
+
+					<h3>About</h3>
+
+					<p>I'm a software engineer currently located in Munich Germany.
+						The goal of this blog is to share useful information I am
+						interested in and some of my previous work. Mostly in the
+						programming area, but probably I will be posting thoughts of
+						general interest too.</p>
+
+				</div>
+				<div class="span3" id="footerArea2">
+
+					<h3>Recent Blog Posts</h3>
+					<p>
+						<a href="#" title="">Open Closed Principle</a><br /> <span
+							style="text-transform: none;">on December 2012</span>
+					</p>
+					<p>
+						<a href="#" title="">AES ECB basic implementation</a><br /> <span
+							style="text-transform: none;">on July 2012</span>
+					</p>
+					<p>
+						<a href="#" title="">Scrum</a><br /> <span
+							style="text-transform: none;">on March 2012</span>
+					</p>
+					<p>
+						<a href="blog.html" title="">VIEW ALL POSTS</a>
+					</p>
+
+				</div>
+				<div class="span3" id="footerArea3">
+
+					<h3>I could add some more content</h3>
+					<p></p>
+					<p>Duis mollis, est non commodo luctus, nisi erat porttitor
+						ligula, eget lacinia odio sem nec elit.</p>
+
+				</div>
+				<div class="span3" id="footerArea4">
+
+					<h3>Get in Touch</h3>
+
+					<ul id="contact-info">
+						<li><i class="social foundicon-skype icon"></i> <span
+							class="field">Skype:</span> <br /> cipriano.sanchez</li>
+						<li><i class="general foundicon-mail icon"></i> <span
+							class="field">Email:</span> <br /> <a
+							href="mailto:ciprianosanchez@gmail.com" title="Email">ciprianosanchez@gmail.com</a>
+						</li>
+
+					</ul>
+
+				</div>
+			</div>
+
+			<br /> <br />
+			<div class="row-fluid">
+				<div class="span12">
+					<p class="copyright">Copyright © 2013 Cipriano Sanchez. All
+						Rights Reserved.</p>
+
+					<p class="social_bookmarks">
+						<a href="https://twitter.com/bartzillacr" target="_blank"><i
+							class="social foundicon-twitter"></i> Twitter</a> <a
+							href="https://github.com/bartzilla" target="_blank"><i
+							class="social icon-github-alt"></i> GitHub</a> <a
+							href="http://stackoverflow.com/users/379119/bartzilla"
+							target="_blank"><i class="stackoverflow"></i>Stackoverflow</a> <a
+							href="http://instagram.com/_bartzilla" target="_blank"><i
+							class="social foundicon-instagram"></i> Instagram</a>
+					</p>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	</div>
+	<br />
+	<br />
+	<br />
+
+	<script src="scripts/jquery.min.js" type="text/javascript"></script>
+	<script src="scripts/bootstrap/js/bootstrap.min.js"
+		type="text/javascript"></script>
+	<script src="scripts/default.js" type="text/javascript"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Cipriano Sanchez - Modes of Operation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link href="../scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../scripts/bootstrap/css/bootstrap-responsive.min.css"
+	rel="stylesheet">
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<!-- Icons -->
+<link href="../scripts/icons/general/stylesheets/general_foundicons.css"
+	media="screen" rel="stylesheet" type="text/css" />
+<link href="../scripts/icons/social/stylesheets/social_foundicons.css"
+	media="screen" rel="stylesheet" type="text/css" />
+<!--[if lt IE 8]>
+        <link href="scripts/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="scripts/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
+    <![endif]-->
+<link rel="stylesheet"
+	href="../scripts/fontawesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+        <link rel="stylesheet" href="scripts/fontawesome/css/font-awesome-ie7.min.css">
+    <![endif]-->
+
+
+
+<link href="http://fonts.googleapis.com/css?family=Zeyada"
+	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Helvetica+Neue"
+	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Terminal+Dosis+Light"
+	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Abel"
+	rel="stylesheet" type="text/css">
+
+<link href="../styles/custom.css" rel="stylesheet" type="text/css" />
+</head>
+<body id="pageBody">
+
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span5">
+
+				<div id="divLogo">
+					<a href="../index.html" id="divSiteTitle">Cipriano Sanchez</a><br />
+					<a href="../index.html" id="divTagLine">Site & Blog</a>
+				</div>
+
+			</div>
+			<div class="span7">
+
+				<div id="divMenuRight" class="pull-right">
+					<div class="navbar">
+						<button type="button"
+							class="btn btn-navbar-highlight btn-large btn-primary"
+							data-toggle="collapse" data-target=".nav-collapse">
+							NAVIGATION <span class="icon-chevron-down icon-white"></span>
+						</button>
+						<div class="nav-collapse collapse">
+							<ul class="nav nav-pills ddmenu">
+								<li class="dropdown active"><a href="index.html">Home</a></li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle">Site
+										<b class="caret"></b>
+								</a>
+									<ul class="dropdown-menu">
+										<li><a href="#">Resume</a></li>
+										<li><a href="../blog.html">Blog</a></li>
+										<li><a href="http://instagram.com/_bartzilla"
+											target="_blank">Instagram</a></li>
+									</ul></li>
+								<li class="dropdown"><a href="../blog.html">Blog</a></li>
+								<li class="dropdown"><a href="../about.html">About</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="divBoxed" class="container">
+
+		<div class="transparent-bg"
+			style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; zoom: 1;"></div>
+
+		<div class="divPanel notop nobottom">
+			<div class="row-fluid">
+				<div class="span12">
+					<div id="contentInnerSeparator"></div>
+				</div>
+			</div>
+		</div>
+
+		
+
+			<div class="divPanel notop page-content">
+
+				<div class="breadcrumbs">
+					<a href="../index.html">Home</a>&nbsp;/&nbsp;<a href="../blog.html">Blog</a>&nbsp;/&nbsp;
+					<span>Modes of Operation</span>
+				</div>
+			<h1>Modes of Operation</h1>
+			<div style="text-align: justify;">
+				<br />After explaining the basis of how the AES block cipher works
+				now we’re moving into modes of operations. Basically, a block cipher
+				by itself allows encrypting only a data block of the cipher's block
+				length (in AES 128 bits). Although it might happen that the
+				plaintext to be encrypted has exactly 128 bits, this is not always
+				the case and the plaintext normally exceeds by far 128 bits. As
+				plaintexts can be of any length they have to be broken into blocks
+				before the encryption process takes place.<br />
+			</div>
+			<br />
+			<div style="text-align: justify;">
+				The National Institute for Standards and Technology has defined five
+				confidentiality modes of operation for the AES block cipher, with
+				different characteristics. The modes of operation defined for AES
+				are ECB (Electronic Code Book), CBC (Cipher Block Chaining), CFB
+				(Cipher FeedBack), OFB (Output FeedBack), and CTR (Counter).<br />
+				<br />Since the idea of these posts is to demonstrate the benefits
+				of running AES in parallel I will explain only ECB and CTR modes of
+				operations, which are the ones that might benefit the most when
+				running in parallel due to the lack of dependencies between the data
+				blocks they encrypt; being like that ideal candidates to be
+				implemented on parallel processors such as a Graphic Processing Unit
+				or GPU (we’ll come back to that later..).<br />
+				<br />
+				<span style="font-weight: bold;">Electronic Code Book </span><br />
+				<br />ECB is one of the simplest modes of operations. To encrypt a
+				plaintext the forward AES cipher function is applied. The plaintext
+				is divided into blocks each of which is, encrypted independently
+				using a key. In ECB decryption, the inverse cipher function is as
+				well applied directly and independently to each block of ciphertext.<br />
+			</div>
+			<br /> <a
+				onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}"
+				href="http://3.bp.blogspot.com/_urB2DqfA9zs/TUSQuVarM6I/AAAAAAAAA2g/z25Dp8TugSo/s1600/Untitled.png"><img
+				style="display: block; margin: 0px auto 10px; text-align: center; cursor: pointer; width: 400px; height: 233px;"
+				src="http://3.bp.blogspot.com/_urB2DqfA9zs/TUSQuVarM6I/AAAAAAAAA2g/z25Dp8TugSo/s400/Untitled.png"
+				alt="" id="BLOGGER_PHOTO_ID_5567734165034185634" border="0" /></a><br />
+			<div style="text-align: justify;">
+				One important consideration is the fact that in ECB if a similar
+				data pattern exists and the same key is used, then the plain text
+				will generate the same cipher text (as would happen when enciphering
+				a file with repeated 16 bytes blocks), which is a major leak of
+				secret information and can be exploited by cryptanalytic attacks. In
+				the next picture it can be seen the pattern that ECB exposes when
+				encrypting an image, this was mainly the reason why other modes of
+				operation were designed, among them CTR. If this property is not
+				desired, this mode of operation should not be considered.<br />
+			</div>
+			<br /> <br /> <a
+				onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}"
+				href="http://1.bp.blogspot.com/_urB2DqfA9zs/TUSREtLc75I/AAAAAAAAA2o/f7fdIPMMWRE/s1600/Untitled.png"><img
+				style="display: block; margin: 0px auto 10px; text-align: center; cursor: pointer; width: 400px; height: 142px;"
+				src="http://1.bp.blogspot.com/_urB2DqfA9zs/TUSREtLc75I/AAAAAAAAA2o/f7fdIPMMWRE/s400/Untitled.png"
+				alt="" id="BLOGGER_PHOTO_ID_5567734549369909138" border="0" /></a><br /> <span style="font-weight: bold;">Counter CTR</span><br /> <br />
+			<div style="text-align: justify;">
+				One way to hide data patterns is to provide some randomization for
+				each block. All the modes of operation apart from ECB require an
+				initialization vector (IV). The IV is used to provide a unique
+				cipher text if the same key is re-used. In CTR a set of input blocks
+				called counters are encrypted using the key, producing output blocks
+				called keystreams, which are used to perform an XOR operation with
+				the plaintext blocks. The sequence of counters must have the
+				property that each block in the sequence is different than the rest,
+				in other words all counters must be distinct. In CTR encryption, the
+				block cipher encryption function is called on each counter block.
+				Afterwards, the resulting output is XORed with the respective
+				plaintext block to generate the ciphertext. While decrypting, the
+				block cipher encryption function is invoked on each counter block.
+				The resulting output will be then XORed with the respective
+				ciphertext block in order to recover the plaintext block.<br />
+			</div>
+			<br /> <a
+				onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}"
+				href="http://4.bp.blogspot.com/_urB2DqfA9zs/TUSRWPLVF0I/AAAAAAAAA2w/9JsLCcZiTsg/s1600/Untitled.png"><img
+				style="display: block; margin: 0px auto 10px; text-align: center; cursor: pointer; width: 400px; height: 264px;"
+				src="http://4.bp.blogspot.com/_urB2DqfA9zs/TUSRWPLVF0I/AAAAAAAAA2w/9JsLCcZiTsg/s400/Untitled.png"
+				alt="" id="BLOGGER_PHOTO_ID_5567734850553976642" border="0" /></a><span
+				style="font-weight: bold;">Summary</span><br /> <br />
+			<div style="text-align: justify;">
+				In these first three posts I cover the very basis of AES and modes
+				of operations, which for our purposes are going to be enough to
+				start with our first coding examples. Let’s make a small review!!<br />
+			</div>
+			<br />
+			<div style="text-align: justify;">
+				A brief historical remark about the Advanced Encryption Standard,
+				followed by an overview of its functionality was provided. It was
+				explained how input data is mapped to an intermediate matrix called
+				the state in where all AES operations are going to take place; as
+				well as how the state maps to the output array. The four steps
+				contained on the AES rounds: AddRoundKey, SubBytes, ShiftRows and
+				MixColumns were explained. The amount of rounds strongly depends on
+				the key length and in order to compute them it is necessary to
+				expand the key; the process of expanding the key was exemplified as
+				well. Moreover, modes of encryption were introduced and two parallel
+				in nature modes of operations named ECB and CTR were covered.<br />
+			</div>
+			<br />
+			<div style="text-align: justify;">The first AES examples I will
+				be presenting soon are going to run on the CPU; we’re going to
+				create a C program that makes usage of the OpenSSL library which is
+				the most common used cryptographic framework. The idea is to create
+				a (hopefully short!) tutorial of how to implement AES using OpenSSL
+				which it is kind of painful due to the lack of documentation on the
+				web.</div>
+
+
+
+
+
+			<br/>
+					<div align="justify" class="MsoNormal"
+						style="margin: 0in 0in 10pt;"></div>
+
+					<!-- AddThis Button BEGIN -->
+					<div
+						class="addthis_toolbox addthis_default_style addthis_32x32_style">
+							<a class="addthis_button_preferred_1"></a> <a
+							class="addthis_button_preferred_2"></a> <a
+							class="addthis_button_preferred_3"></a> <a
+							class="addthis_button_preferred_4"></a> <a
+							class="addthis_button_compact"></a> <a
+							class="addthis_counter addthis_bubble_style"></a>
+					</div>
+					<script type="text/javascript">
+						var addthis_config = {
+							"data_track_addressbar" : true
+						};
+					</script>
+					<script type="text/javascript"
+						src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-511e7f534b00ef7b"></script>
+					<!-- AddThis Button END -->
+
+
+
+				<div id="footerInnerSeparator"></div>
+
+		</div>
+
+		<div id="footerOuterSeparator"></div>
+
+		<div id="divFooter" class="footerArea">
+
+			<div class="divPanel">
+
+				<div class="row-fluid">
+					<div class="span3" id="footerArea1">
+
+						<h3>About</h3>
+
+						<p>I'm a software engineer currently located in Munich
+							Germany. The goal of this blog is to share useful information I
+							am interested in and some of my previous work. Mostly in the
+							programming area, but probably I will be posting thoughts of
+							general interest too.</p>
+
+					</div>
+					<div class="span3" id="footerArea2">
+
+						<h3>Recent Blog Posts</h3>
+						<p>
+							<a href="#" title="">Open Closed Principle</a><br /> <span
+								style="text-transform: none;">on December 2012</span>
+						</p>
+						<p>
+							<a href="#" title="">AES ECB basic implementation</a><br /> <span
+								style="text-transform: none;">on July 2012</span>
+						</p>
+						<p>
+							<a href="#" title="">Scrum</a><br /> <span
+								style="text-transform: none;">on March 2012</span>
+						</p>
+						<p>
+							<a href="blog.html" title="">VIEW ALL POSTS</a>
+						</p>
+
+					</div>
+					<div class="span3" id="footerArea3">
+
+						<h3>I could add some more content</h3>
+						<p></p>
+						<p>Duis mollis, est non commodo luctus, nisi erat porttitor
+							ligula, eget lacinia odio sem nec elit.</p>
+
+					</div>
+					<div class="span3" id="footerArea4">
+
+						<h3>Get in Touch</h3>
+
+						<ul id="contact-info">
+							<li><i class="social foundicon-skype icon"></i> <span
+								class="field">Skype:</span> <br /> cipriano.sanchez</li>
+							<li><i class="general foundicon-mail icon"></i> <span
+								class="field">Email:</span> <br /> <a
+								href="mailto:ciprianosanchez@gmail.com" title="Email">ciprianosanchez@gmail.com</a>
+							</li>
+
+						</ul>
+
+					</div>
+				</div>
+
+				<br />
+				<br />
+				<div class="row-fluid">
+					<div class="span12">
+						<p class="copyright">Copyright © 2013 Cipriano Sanchez. All
+							Rights Reserved.</p>
+
+						<p class="social_bookmarks">
+							<a href="https://twitter.com/bartzillacr" target="_blank"><i
+								class="social foundicon-twitter"></i> Twitter</a> <a
+								href="https://github.com/bartzilla" target="_blank"><i
+								class="social icon-github-alt"></i> GitHub</a> <a
+								href="http://stackoverflow.com/users/379119/bartzilla"
+								target="_blank"><i class="stackoverflow"></i>Stackoverflow</a> <a
+								href="http://instagram.com/_bartzilla" target="_blank"><i
+								class="social foundicon-instagram"></i> Instagram</a>
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<br />
+	<br />
+	<br />
+
+	<script src="scripts/jquery.min.js" type="text/javascript"></script>
+	<script src="scripts/bootstrap/js/bootstrap.min.js"
+		type="text/javascript"></script>
+	<script src="scripts/default.js" type="text/javascript"></script>
+
+
+
+
+
+</body>
+</html>
