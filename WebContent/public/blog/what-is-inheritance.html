@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Cipriano Sanchez - Advanced Encryption Standard Algorithm</title>
+<title>Cipriano Sanchez - What is inheritance?</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -44,7 +44,8 @@
 
 <link href="../styles/custom.css" rel="stylesheet" type="text/css" />
 </head>
-<body id="pageBody">
+<link href='http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css' rel='stylesheet' type='text/css'/> <script src='http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js' type='text/javascript'></script>
+<body id="pageBody" onload='prettyPrint()'>
 
 	<div class="container">
 		<div class="row-fluid">
@@ -106,132 +107,98 @@
 
 				<div class="breadcrumbs">
 					<a href="../index.html">Home</a>&nbsp;/&nbsp;<a href="../blog.html">Blog</a>&nbsp;/&nbsp;
-					<span>Advanced Encryption Standard Algorithm</span>
+					<span>What is inheritance?</span>
 				</div>
 
-				<div class="row-fluid">
-				<div id="divMain">
-					<h1>Advanced Encryption Standard Algorithm</h1>
-					<div align="justify" class="MsoNormal"
-						style="margin: 0in 0in 10pt;">In the next days I will be
-						writing about the AES algorithm, so I am going to start with a
-						brief historical introduction and basic description of the
-						algorithm before I move into more technical stuff.</div>
-					<div align="justify" class="MsoNormal"
-						style="margin: 0in 0in 10pt;">
-						In January 1997, the US National Institute for Standards and
-						Technology (NIST) announced a competition to develop a new
-						encryption algorithm to replace the old Data Encryption Standard
-						DES. This latter algorithm was urged to be replaced due to
-						computational power improvements making of DES a weak cipher. Some
-						computers at the time were capable to break DES inspecting its key
-						space of 2^56 <span style="font-family: 'Georgia', 'serif';">keys
-							by brute force. </span>
-					</div>
-					<div align="justify" class="MsoNormal"
-						style="margin: 0in 0in 10pt;">
-						The new encryption standard developed, was the Advanced Encryption
-						Standard or AES becoming the United States encryption standard for
-						sensitive information defined in Federal Information Processing
-						Standard (FIPS 197). Unlike the design of DES, AES was designed as
-						an open and public competition and many companies and researchers
-						around the world participated in the contest . In total fifteen
-						new algorithms were submitted and a second round narrow the choice
-						to five of these. Among them was the Rijndael algorithm which in
-						2001 was announced to be the winner cipher. Rijndael was designed
-						by two Belgium cryptographers; Joan Daemen and Vincent Rijmen from
-						which the algorithm receives its name<span
-							style="font-family: Calibri;">. </span>
-					</div>
-					<div align="justify" class="MsoNormal"
-						style="margin: 0in 0in 10pt;">
-						AES is a symmetric algorithm based on the original Rijndael
-						algorithm. It encrypts in blocks of 128 bits of data called
-						plaintext, and transforms it into an encrypted new block of the
-						same length called ciphertext. The difference between Rijnadael
-						and AES is that Rijndael encrypts blocks of data of 128, 192 and
-						also 256 bits and AES only encrypts blocks of 128 bits. In order
-						to encrypt AES makes usage of a key which is going to be secret
-						and shared between the encryption/decryption parties. The key was
-						designed to have sizes of 128-bits, 192-bits or 256-bits length.
-						</o:p>
+				
+				<h1>What is inheritance?</h1>
 
-					</div>
-					<div align="center">
-						<br />
-					</div>
-					<div align="center" class="MsoNormal" style="margin: 0in 0in 10pt;">
-						<span style="font-family: Calibri;"></span>
-					</div>
-					<img alt="" border="0" id="BLOGGER_PHOTO_ID_5535339048901458274"
-						src="http://3.bp.blogspot.com/_urB2DqfA9zs/TNF5iZkeuWI/AAAAAAAAAzw/Quq-TZ1it24/s320/Untitled.png"
-						style="cursor: hand; display: block; height: 238px; margin: 0px auto 10px; text-align: center; width: 320px;" />
-					<br />
-					<div align="center">
-						<em>Image taken from a very cool AES animation found in: <a
-							href="http://www.formaestudio.com/rijndaelinspector">http://www.formaestudio.com/rijndaelinspector</a>
-						</em>
-					</div>
-					<div class="MsoNormal" style="margin: 0in 0in 10pt;">
-						<span style="font-family: Calibri;"></span>
-					</div>
-					<div class="MsoNormal" style="margin: 0in 0in 10pt;"></div>
-					<div class="MsoNormal" style="margin: 0in 0in 10pt;"></div>
-					<div align="justify" class="MsoNormal"
-						style="margin: 0in 0in 10pt;">
-						The algorithm performs a number of rounds transforming the
-						plaintext depending on the key length. For example, when using a
-						128 bit key the algorithm executes 10 rounds, when using 192 bit
-						keys 12 rounds and finally when using a 256 bit key 14 rounds are
-						executed. Through the process the 128 bit block of plaintext will
-						go to what we are going to call as the <i
-							style="mso-bidi-font-style: normal;">AES encryption process</i>
-						illustrated in the image above, and the key will go through a
-						process called the <i style="mso-bidi-font-style: normal;">KeyExpansion</i>
-						or sometimes referred to as the <i
-							style="mso-bidi-font-style: normal;">KeySchedule</i> (Generate
-						expanded keys for the different AES rounds). The 128 bit block of
-						plaintext will be processed in an intermediate <i
-							style="mso-bidi-font-style: normal;">state</i> which “can” be
-						seen as a 4x4 matrix holding 16 bytes (is not always a real matrix
-						and can be a vector).
-						</o:p>
+			<p style="margin-bottom: 0.0001pt; text-align: justify;">
+				Real objects often have a certain amount of common similarities with
+				each other. For example there are many types of Bicycles: mountain
+				bikes, road bikes, tandem bikes and so on. However all of these
+				bicycles share similarities like: current speed, current pedal,
+				cadence, current gear. Yet each also defines additional features
+				that make them different: tandem bicycles have two seats and two
+				sets of handlebars; road bikes have drop handlebars; some mountain
+				bikes have an additional chain ring, giving them a lower gear ratio.
+				But, wouldn't it be great if we could just tell all our bikes to
+				absorb sharing similarities and just worry about the new features
+				the new bike will offer. Well, we can achieve this by using
+				inheritance. (I won't write here about when to use inheritance, best
+				practices, types of inheritance and so on. Hopefully, more on that
+				in future posts, by now just the basic definition)<br />
+			</p>
+			<div style="text-align: justify;"></div>
+			<p style="margin-bottom: 0.0001pt; text-align: justify;">
+				Object-oriented programming allows classes to <i>inherit</i>
+				commonly used state and behavior from other classes. In this
+				example,
+				
+				<b>Bicycle</b>
+				
+				now becomes the <i>superclass</i> of
+				<b>MountainBike</b>
+				,
+				<b>RoadBike</b>
+				, and
+				,<b>TandemBike</b>
+				. In the Java programming language, each class is allowed to have
+				one direct superclass, and each superclass has the potential for an
+				unlimited number of <i>subclasses</i>:
+			</p>
+			<br /> <br />
+			<div style="text-align: justify;">
+				<a
+					onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}"
+					href="http://3.bp.blogspot.com/-jgXaLQAkSUI/TVmuYcV6T7I/AAAAAAAAA4I/jJlJjCGbcQg/s1600/Untitled.png"><img
+					style="display: block; margin: 0px auto 10px; text-align: center; cursor: pointer; width: 400px; height: 229px;"
+					src="http://3.bp.blogspot.com/-jgXaLQAkSUI/TVmuYcV6T7I/AAAAAAAAA4I/jJlJjCGbcQg/s400/Untitled.png"
+					alt="" id="BLOGGER_PHOTO_ID_5573677748795887538" border="0" /></a><span
+					style="line-height: 115%; font-family: &amp; quot;; font-size: 12pt;">With
+					inheritance, programmers save time during program development by
+					reusing proven and debugged high-quality software. This also
+					increases the likelihood that a system will be implemented
+					effectively.</span>
+			</div>
+			<p style="text-align: justify;" class="MsoNormal">
+				<span
+					style="line-height: 115%; font-family: &amp; quot;; font-size: 12pt;">When
+					creating a class, rather than declaring completely new shared state
+					and behaviors, you can designate that the new class should inherit
+					them of an existing class. The existing class is called the
+					superclass, and the new class is the subclass. (The C++ programming
+					language refers to the superclass as the base class and the
+					subclass as the derived class.) Each subclass can become the
+					superclass for future subclasses.</span>
+			</p>
+			<div style="text-align: justify;"></div>
+			<p style="text-align: justify;" class="MsoNormal">
+				<span
+					style="line-height: 115%; font-family: &amp; quot;; font-size: 12pt;">The
+					syntax for creating a subclass is simple. At the beginning of your
+					class declaration, use the extends keyword, followed by the name of
+					the class to inherit from</span><br />
+		
+		<pre class="prettyprint language-java">			
+class MountainBike extends Bicycle
+{
 
-					</div>
-					<div align="justify" class="MsoNormal"
-						style="margin: 0in 0in 10pt;">
-						If we look back to the AES process illustrated this refers
-						particularly to AES-128 bit key which executes a total of 10
-						rounds. As we can see, AES consists of only 4 operations:
-						SubBytes, ShiftRows, MixColumns and AddRoundKey. It is important
-						to note that the very last round differs from the rest of rounds
-						by skipping the MixColumns process. <span
-							style="mso-spacerun: yes;"></span>Before the plaintext is
-						transformed to ciphertext it has to pass through all these
-						operations transforming gradually the plaintext stored on the
-						state matrix into encrypted text which will result into the final
-						cipher text.
-						</o:p>
+	// new fields and methods defining a mountain bike would go here
 
-					</div>
-					<div align="justify" class="MsoNormal"
-						style="margin: 0in 0in 10pt;">
-						This is an introductory and general explanation of the AES
-						algorithm. In future posts I will be explaining how the different
-						AES operations work. However, if in the meantime you feel
-						interested in getting to know more about the AES steps I really
-						recommend checking out this AES encryption animation (<em><span
-							style="font-family: 'Georgia', 'serif'; mso-bidi-: minor-bidifont-family:'Times New Roman';"><a
-								href="http://www.formaestudio.com/rijndaelinspector"><span
-									style="color: blue;">http://www.formaestudio.com/rijndaelinspector</span></a></span></em>)
-						it gives a very simple understanding of how AES works without
-						digging into complex mathemtical explanations. Though, if that is
-						what you need “The Design of Rijndael” or the “AES specification”
-						might be more useful.
-						</o:p>
+}
+					</pre>
 
-					</div><br/>
-					<div align="justify" class="MsoNormal"
+			<div style="text-align: justify;">In this example this gives
+				MountainBike all the same fields and methods as Bicycle, yet allows
+				its code to focus exclusively on the features that make it unique.
+				This makes code for your subclasses easy to read. However, you must
+				take care to properly document the state and behavior that each
+				superclass defines, since that code will not appear in the source
+				file of each subclass.</div>
+
+			<br />
+			<div align="justify" class="MsoNormal"
 						style="margin: 0in 0in 10pt;"></div>
 
 					<!-- AddThis Button BEGIN -->
@@ -254,15 +221,12 @@
 					<!-- AddThis Button END -->
 
 
-				</div>
-
-
 
 
 
 				<div id="footerInnerSeparator"></div>
 			</div>
-		</div>
+
 
 		<div id="footerOuterSeparator"></div>
 

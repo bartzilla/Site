@@ -104,16 +104,168 @@
                     <div id="gridArea" class="yoxview">
                         <ul id="tiles">
                         
+                            <li>
+                            <a href="blog/open-closed-principle.html"><img src="http://leukigheidjes.nl/wp-content/uploads/2012/09/Openclosed-bordje.jpg" alt="Sticky" title="Sticky"/></a>
+                            <div class="meta"><span>August 14, 2012</span><span class="pull-right">By Cipriano</span></div>
+                            <h4><a href="blog/open-closed-principle.html">Open Closed Principle</a></h4>
+                            <p>
+										A very important consideration when building software is to
+										write code to produce applications which can adapt when new needs or
+										requirements change (.. which for sure they will ) without affecting
+										the rest of the already implemented functionality. Usually, changes
+										in existing code should be minimized since it is assumed that the
+										existing code is already unit tested and that probably it took a
+										long time to get it correct and bug free. <br />
+										<a href="/blog/open-closed-principle.html" class="more_link">Read More</a>
+									</p>
+								</li>  
+                        
+                            <li>
+                            <a href="blog/aes_basic_implementation.html"><img src="http://2.bp.blogspot.com/-LkLqAzlPfPY/TXOlUHEEHcI/AAAAAAAAA5I/p0_H-pk4H2U/s1600/Untitled.png" onblur="t" alt="Sticky" title="Sticky"/></a>
+                            <div class="meta"><span>June 16, 2012</span><span class="pull-right">By Cipriano</span></div>
+                            <h4><a href="blog/aes_basic_implementation.html">AES ECB basic implementation</a></h4>
+                            <p>
+										The AES algorithm can be implemented following strictly the
+										AES round steps described in my previous
+										<a href="/blog/aes.html">post</a> or by using pre-computed
+										lookup tables. This post describes an AES implementation which
+										follows the AES round steps and is based on existing source
+										code developed by
+										<a href="http://code.google.com/p/byte-oriented-aes/">karl
+											malbrain</a>. It is written in a very modular way, making it
+										ideal to get to know the algorithm without getting confused by
+										the usage of look up tables. However, this version is aimed to
+										understand the process and has no focus at all in performance
+										optimization. As well the implementation is used to have a
+										starting point to demonstrate how different levels of
+										performance benefits can be achieved by using a modified
+										version of the algorithm. From now on we will refer to this
+										version as AES-B which stands for AES Basic implementation. <br />
+										<a href="/blog/aes_basic_implementation.html" class="more_link">Read More</a>
+									</p>
+							</li>  
+                        
+                            <li>
+                            <article class="flex-video">
+                                <iframe width="560" height="315" src="http://www.youtube.com/embed/Q5k7a9YEoUI" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
+                            </article>   
+                            <div class="meta"><span>May 18, 2012</span><span class="pull-right">By Cipriano</span></div>
+                            <h4><a href="blog/scrum.html">Scrum</a></h4>
+									<p>
+										The term agile software development is an oft used <span
+											style="font-style: italic;">buzz-word</span>, but the main
+										idea behind this term is that <span style="font-weight: bold;">we
+											expect changes in requirements through-out the development
+											cycle</span> and should anticipate these changes by developing in a
+										way that allows us to respond quickly to changing requirements
+										and conditions. <br /> <a href="/blog/scrum.html"
+											class="more_link">Read More</a>
+									</p>
+								</li>                         
+                             <li>
+                            <a href="blog/generics.html"><img src="http://vimalpatel.net/blog/wp-content/uploads/2012/06/generics-300x161.png" alt="Sticky" title="Sticky"/></a>
+                            <div class="meta"><span>March 28, 2012</span><span class="pull-right">By Cipriano</span></div>
+                            <h4><a href="blog/generics.html">Language Features of Java Generics</a></h4>
+                            <p>
+										One of the main features introduced with Java 2SE 5.0 are generics;
+										which provide the means to create general implementations for
+										different <span style="font-style: italic;">types </span>(a class or
+										an Interface). Think about the possibility of creating a single
+										Generic <span style="font-family: courier new;">Stack </span>class
+										for every different <span style="font-style: italic;">type </span>you
+										wish to store, without the need to implement the same <span
+											style="font-family: courier new;">Stack </span>functionality for
+										the different <span style="font-style: italic;">types </span>over
+										and over again (<span style="font-family: courier new;">StackOfIntegers</span>,
+										<span style="font-family: courier new;">StackOfString</span>, <span
+											style="font-family: courier new;">StackOfDoubles</span>), just
+										because it will hold elements of different types. <br />
+										<a href="/blog/generics.html" class="more_link">Read More</a>
+									</p>
+								</li>  
+                        
+                        <li>
+                            <a href="blog/package.html"><img src="http://theverticalview.files.wordpress.com/2012/11/brown-paper-package.png" alt="Sticky" title="Sticky"/></a>
+                            <div class="meta"><span>February 23, 2012</span><span class="pull-right">By Cipriano</span></div>
+                            <h4><a href="blog/package.html">What is a Package?</a></h4>
+                            <p>
+										Packages are namespaces that organize a group of related
+										classes and interfaces. Packages can be thought as folders on
+										your computer system. Many projects might contain html pages
+										in one folder, images in anothe	, scripts, interfaces and so
+										on. <br />
+										<a href="/blog/package.html" class="more_link">Read More</a>
+									</p>
+								</li>     
+                        
+                    <li>
+                            <a href="blog/what-are-interfaces.html"><img src="http://www.agilemodeling.com/images/models/generalInterfaces.JPG" alt="Sticky" title="Sticky"/></a>
+                            <div class="meta"><span>February 17, 2012</span><span class="pull-right">By Cipriano</span></div>
+                            <h4><a href="blog/what-are-interfaces.html">What are Interfaces?</a></h4>
+                            <p>
+										As it was seen methods (behaviors) in objects define their
+										interaction with the outside world. These method's form the
+										interface which as well can interact with the outside world.
+										Imagine the following scenario: You have been using the
+										previous bike object defined before and you are very familiar
+										with how to speedUp, changeGear, changeCadence, applyBrakes
+										and so on. However, your bike is kind of old and you got a
+										brand new bike.
+										<br />
+										<a href="blog/what-are-interfaces.html" class="more_link">Read
+											More</a>
+									</p>
+								</li>   
+                        
+                        <li>
+                            <a href="blog/programmers.html"><img src="http://upload.wikimedia.org/wikipedia/en/9/95/Stack_Overflow_website_logo.png" alt="Sticky" title="Sticky"/></a>
+                            <div class="meta"><span>February 15, 2012</span><span class="pull-right">By Cipriano</span></div>
+                            <h4><a href="blog/programmers.html">StackOverflow & Programmers</a></h4>
+                            <p>One good way to keep yourself updated specially if you are out of
+					university is reading and writing as much code as possible. Two
+					excellent sites I usually peek daily are <a
+						href="http://stackoverflow.com/" target="_blank">stackoverflow</a>
+					&amp; <a href="http://programmers.stackexchange.com/" target="_blank">programmers</a>
+                            <br /><a href="/blog/programmers.html" class="more_link">Read More</a></p>
+                        </li>   
+
+                        <li>
+                            <a href="blog/what-is-inheritance.html"><img src="http://3.bp.blogspot.com/-jgXaLQAkSUI/TVmuYcV6T7I/AAAAAAAAA4I/jJlJjCGbcQg/s1600/Untitled.png" alt="Sticky" title="Sticky"/></a>
+                            <div class="meta"><span>February 14, 2012</span><span class="pull-right">By Cipriano</span></div>
+                            <h4><a href="blog/what-is-inheritance.html">What is Inheritance?</a></h4>
+                            <p>Real objects often have a certain amount of common similarities with
+								each other. For example there are many types of Bicycles: mountain
+								bikes, road bikes, tandem bikes and so on.
+                            <br /><a href="/blog/what-is-inheritance.html" class="more_link">Read More</a></p>
+                        </li>                       
+                        
+                         <li>
+                            <a href="blog/what-is-class.html"><img src="http://www.agilemodeling.com/images/models/classDiagramSketch.JPG" alt="Sticky" title="Sticky"/></a>
+                            <div class="meta"><span>February 13, 2012</span><span class="pull-right">By Cipriano</span></div>
+                            <h4><a href="blog/what-is-class.html">What is a Class?</a></h4>
+                            <p>
+										In our real world we can have many objects all of the same
+										kind. You can think of cars, computers or bicycles. There may
+										be millions of bicycles all of them made with the same
+										characteristics but still each bike represents a different
+										object. In object-oriented terms it is said each bicycle among
+										these million bikes is an instance of the class of object in
+										this case the class Bicycle. <br />
+										<a href="/blog/what-is-class.html" class="more_link">Read
+											More</a>
+									</p>
+						</li>                          
+                        
                         <li>
                             <a href="blog/what-is-object.html"><img src="http://1.bp.blogspot.com/-N67WQg_NJqU/TVP7vnm53zI/AAAAAAAAA3w/EnHKYYGtzE8/s1600/Unbenannt.bmp" alt="Sticky" title="Sticky"/></a>
                             <div class="meta"><span>February 10, 2012</span><span class="pull-right">By Cipriano</span></div>
-                            <h4><a href="blog/modes-of-operation.html">What is an Object?</a></h4>
+                            <h4><a href="blog/what-is-object.html">What is an Object?</a></h4>
                             <p>Real world objects vary in complexity for example a lamp might have
 								just two states on and off and two possible behaviors turnOn and
 								turnOff. However, a television might have additional states such as:
 								on, off, currentChannel, currentVolume and behavior: turnOn,
 								turnOff, increaseVolume, decreaseVolume, scanChannel.
-                            <br /><a href="/blog/modes-of-operation.html" class="more_link">Read More</a></p>
+                            <br /><a href="/blog/what-is-object.html" class="more_link">Read More</a></p>
                         </li>  
                         
                        <li>
@@ -165,124 +317,7 @@
                             <p>In the next days I will be writing about the AES algorithm, so I am going to start with a brief historical introduction and basic description of the algorithm before I move into more technical stuff.
                             <br /><a href="/blog/aes.html" class="more_link">Read More</a></p>
                         </li>            
-                        <li>
-                            <a href="styles/thumbs/egg_800.jpg"><img src="styles/thumbs/egg_350.jpg" alt="Egg" title="Egg"/></a>
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Sample photo with long description</a></h4>
-                            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. 
-                            <br /><a href="#" class="more_link">Read More</a></p></li>
-                        <li>
-                            <a href="styles/thumbs/earrings_800.jpg"><img src="styles/thumbs/earrings_350.jpg"  alt="Earrings" title="Earrings"/></a>
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Earrings</a></h4>
-                            <p>When an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                            <br /><a href="#" class="more_link">Read More</a></p></li>
-                        <li>
-                            <article class="flex-video">
-                                <iframe width="560" height="315" src="http://player.vimeo.com/video/47911018" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
-                            </article>   
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Vimeo video embed</a></h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            </p>
-                        </li>  
-                        <li>                
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Sample short text</a></h4>
-                            <p>A sample short text post with no 'Read More' link.
-                            </p></li>
-                        <li>
-                            <a href="styles/thumbs/butterfly_800.jpg"><img src="styles/thumbs/butterfly_350.jpg" alt="Butterfly" title="Butterfly"/></a>
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Butterfly</a></h4>
-                            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            <br /><a href="#" class="more_link">Read More</a></p></li>
-                        <li>
-                            <img src="styles/thumbs/orange_350.jpg" alt="Orange" title="Orange"/>
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Sample photo with no lightbox</a></h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p></li>
-                        <li>                
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Sample quote</a></h4>                
-                            <blockquote>
-	                            <p>"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s."</p>
-	                            <small>by Author</small>
-                            </blockquote>
-                            </li>
-                        <li>
-                            <a href="styles/thumbs/painted-wood_800.jpg"><img src="styles/thumbs/painted-wood_350.jpg" alt="Painted Wood" title="Painted Wood"/></a>
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Painted Wood</a></h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                            <br /><a href="#" class="more_link">Read More</a></p></li>
-                        <li>
-                            <a href="styles/thumbs/spiral_800.jpg"><img src="styles/thumbs/spiral_350.jpg" alt="Spiral" title="Spiral"/></a>
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Sample photo with no description</a></h4>
-                            </li>
-                        <li>
-                            <a href="styles/thumbs/puzzle_800.jpg"><img src="styles/thumbs/puzzle_350.jpg" alt="Puzzle" title="Puzzle"/></a>
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Puzzle</a></h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                            <br /><a href="#" class="more_link">Read More</a></p></li>
-                        <li>
-                            <a href="styles/thumbs/candle_800.jpg"><img src="styles/thumbs/candle_350.jpg" alt="Candle" title="Candle"/></a>
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Candle</a></h4>
-                            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
-                            </li>
-                        <li>
-                            <a href="styles/thumbs/calendar_800.jpg"><img src="styles/thumbs/calendar_350.jpg" alt="Calendar" title="Calendar"/></a>
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Calendar</a></h4>
-                            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. 
-                            <br /><a href="#" class="more_link">Read More</a></p></li>
-                        <li>
-                            <a href="styles/thumbs/christmas_800.jpg"><img src="styles/thumbs/christmas_350.jpg" alt="Christmas" title="Christmas"/></a>
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Christmas</a></h4>
-                            <p>When an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-                            <br /><a href="#" class="more_link">Read More</a></p></li>
-                        <li>
-                            <a href="styles/thumbs/ships_800.jpg"><img src="styles/thumbs/ships_350.jpg" alt="Ships" title="Ships"/></a>
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Ships</a></h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit.
-                            <br /><a href="#" class="more_link">Read More</a></p></li>
-                        <li>
-                            <a href="styles/thumbs/card_800.jpg"><img src="styles/thumbs/card_350.jpg" alt="Card" title="Card"/></a>
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Lorem Ipsum</a></h4>
-                            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. 
-                            <br /><a href="#" class="more_link">Read More</a></p></li>
-                        <li>
-                            <a href="styles/thumbs/fashion_800.jpg"><img src="styles/thumbs/fashion_350.jpg" alt="Fashion" title="Fashion"/></a>
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Duis mollis, est non commodo</a></h4>
-                            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. 
-                            <br /><a href="#" class="more_link">Read More</a></p></li>
-                        <li>
-                            <a href="styles/thumbs/air_800.jpg"><img src="styles/thumbs/air_350.jpg" alt="Air" title="Air"/></a>
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Lorem Ipsum</a></h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                            <br /><a href="#" class="more_link">Read More</a></p></li>
-                        <li>
-                            <article class="youtube video flex-video">
-                                <iframe width="560" height="315" src="http://www.youtube.com/embed/e7OYeIXsW60"></iframe>
-                            </article>   
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Youtube video embed</a></h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                            <br /><a href="#" class="more_link">Read More</a></p>
-                        </li>   
-                        <li>                
-                            <div class="meta"><span>7 days ago</span><span class="pull-right">By Bob</span></div>
-                            <h4><a href="#">Sample long text</a></h4>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas sed diam eget risus varius blandit sit amet non magna. Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                            <br /><a href="#" class="more_link">Read More</a></p></li>   
+                       
                         </ul>
                     </div>
 

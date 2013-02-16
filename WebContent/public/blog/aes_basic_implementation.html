@@ -1,0 +1,468 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Cipriano Sanchez - AES ECB basic implementation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link href="../scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../scripts/bootstrap/css/bootstrap-responsive.min.css"
+	rel="stylesheet">
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<!-- Icons -->
+<link href="../scripts/icons/general/stylesheets/general_foundicons.css"
+	media="screen" rel="stylesheet" type="text/css" />
+<link href="../scripts/icons/social/stylesheets/social_foundicons.css"
+	media="screen" rel="stylesheet" type="text/css" />
+<!--[if lt IE 8]>
+        <link href="scripts/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="scripts/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
+    <![endif]-->
+<link rel="stylesheet"
+	href="../scripts/fontawesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+        <link rel="stylesheet" href="scripts/fontawesome/css/font-awesome-ie7.min.css">
+    <![endif]-->
+
+
+
+<link href="http://fonts.googleapis.com/css?family=Zeyada"
+	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Helvetica+Neue"
+	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Terminal+Dosis+Light"
+	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Abel"
+	rel="stylesheet" type="text/css">
+
+<link href="../styles/custom.css" rel="stylesheet" type="text/css" />
+</head>
+<link href='http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css' rel='stylesheet' type='text/css'/> <script src='http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js' type='text/javascript'></script>
+<body id="pageBody" onload='prettyPrint()'>
+
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span5">
+
+				<div id="divLogo">
+					<a href="../index.html" id="divSiteTitle">Cipriano Sanchez</a><br />
+					<a href="../index.html" id="divTagLine">Site & Blog</a>
+				</div>
+
+			</div>
+			<div class="span7">
+
+				<div id="divMenuRight" class="pull-right">
+					<div class="navbar">
+						<button type="button"
+							class="btn btn-navbar-highlight btn-large btn-primary"
+							data-toggle="collapse" data-target=".nav-collapse">
+							NAVIGATION <span class="icon-chevron-down icon-white"></span>
+						</button>
+						<div class="nav-collapse collapse">
+							<ul class="nav nav-pills ddmenu">
+								<li class="dropdown active"><a href="../index.html">Home</a></li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle">Site
+										<b class="caret"></b>
+								</a>
+									<ul class="dropdown-menu">
+										<li><a href="#">Resume</a></li>
+										<li><a href="../blog.html">Blog</a></li>
+										<li><a href="http://instagram.com/_bartzilla"
+											target="_blank">Instagram</a></li>
+									</ul></li>
+								<li class="dropdown"><a href="../blog.html">Blog</a></li>
+								<li class="dropdown"><a href="../about.html">About</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="divBoxed" class="container">
+
+		<div class="transparent-bg"
+			style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; zoom: 1;"></div>
+
+		<div class="divPanel notop nobottom">
+			<div class="row-fluid">
+				<div class="span12">
+					<div id="contentInnerSeparator"></div>
+				</div>
+			</div>
+		</div>
+
+		
+
+			<div class="divPanel notop page-content">
+
+				<div class="breadcrumbs">
+					<a href="../index.html">Home</a>&nbsp;/&nbsp;<a href="../blog.html">Blog</a>&nbsp;/&nbsp;
+					<span>AES ECB basic implementation</span>
+				</div>
+
+				
+				<h1>AES ECB basic implementation</h1>
+				
+<div style="text-align: justify;">
+The AES algorithm can be implemented following strictly the AES round steps described in my previous <a href="/blog/aes.html">post</a> or by using pre-computed lookup tables. This post describes an AES implementation which follows the AES round steps and is based on existing source code developed by <a href="http://code.google.com/p/byte-oriented-aes/">karl malbrain</a>.  It is written in a very modular way, making it ideal to get to know the algorithm without getting confused by the usage of look up tables. However, this version is aimed to understand the process and has no focus at all in performance optimization. As well the implementation is used to have a starting point to demonstrate how different levels of performance benefits can be achieved by using a modified version of the algorithm. From now on we will refer to this version as AES-B which stands for AES Basic implementation.</div>
+<br />
+Let’s first describe a high level pseudo code of the algorithm:<br />
+<br />
+- Generate AES expanded key<br />
+- XOR input data with encryption key<br />
+- For Rounds = 1 To NrRounds<br />
+- - SubBytes operation<br />
+- - ShifRows operations<br />
+<div style="text-align: justify;">
+<xml><w:worddocument><w:trackmoves><w:trackformatting><w:punctuationkerning><w:validateagainstschemas><w:donotpromoteqf><w:compatibility><w:breakwrappedtables><w:snaptogridincell><w:wraptextwithpunct><w:useasianbreakrules><w:dontgrowautofit><w:splitpgbreakandparamark><w:dontvertaligncellwithsp><w:dontbreakconstrainedforcedtables><w:dontvertalignintxbx><w:word11kerningpairs><m:mathpr><m:mathfont val="Cambria Math"><m:brkbin val="before"><m:brkbinsub val="--"><m:smallfrac val="off"><m:dispdef><m:lmargin val="0"><m:rmargin val="0"><m:defjc val="centerGroup"></m:defjc></m:rmargin></m:lmargin></m:dispdef></m:smallfrac></m:brkbinsub></m:brkbin></m:mathfont></m:mathpr></w:word11kerningpairs></w:dontvertalignintxbx></w:dontbreakconstrainedforcedtables></w:dontvertaligncellwithsp></w:splitpgbreakandparamark></w:dontgrowautofit></w:useasianbreakrules></w:wraptextwithpunct></w:snaptogridincell></w:breakwrappedtables></w:compatibility></w:donotpromoteqf></w:validateagainstschemas></w:punctuationkerning></w:trackformatting></w:trackmoves></w:worddocument></xml><br />
+<div class="MsoNormal" style="margin-bottom: 0.0001pt;">
+As we can see on the previous pseudo code the AES-B algorithm follows the AES round steps described. This makes it easier to understand its functionality. First, we generate the expanded key or key schedule which basically takes the cipher key and performs the key schedule operation to determine the number of round keys necessary to encrypt the data.  The number of round keys necessary to encrypt one block of information is related to the key length. In this example we are using a 128 bits key; therefore it will require in total 11 round keys, 1 for the initial round, 9 for standard rounds and 1 for the final round. After we expand the key, the input data is XORed which is basically the AddRoundKey operation for the initial round, followed by the execution of SubBytes, ShiftRows and MixCulumns operations. Note that these 3 operations will be executed only for the first 9 main rounds and when we reach the 10<sup>th</sup> round we exclude the MixColumns operation as described on previous posts.</div>
+</div>
+<xml><w:worddocument><w:trackmoves><w:trackformatting><w:punctuationkerning><w:validateagainstschemas><w:donotpromoteqf><w:compatibility><w:breakwrappedtables><w:snaptogridincell><w:wraptextwithpunct><w:useasianbreakrules><w:dontgrowautofit><w:splitpgbreakandparamark><w:dontvertaligncellwithsp><w:dontbreakconstrainedforcedtables><w:dontvertalignintxbx><w:word11kerningpairs><m:mathpr><m:mathfont val="Cambria Math"><m:brkbin val="before"><m:brkbinsub val="--"><m:smallfrac val="off"><m:dispdef><m:lmargin val="0"><m:rmargin val="0"><m:defjc val="centerGroup"><br /></m:defjc></m:rmargin></m:lmargin></m:dispdef></m:smallfrac></m:brkbinsub></m:brkbin></m:mathfont></m:mathpr></w:word11kerningpairs></w:dontvertalignintxbx></w:dontbreakconstrainedforcedtables></w:dontvertaligncellwithsp></w:splitpgbreakandparamark></w:dontgrowautofit></w:useasianbreakrules></w:wraptextwithpunct></w:snaptogridincell></w:breakwrappedtables></w:compatibility></w:donotpromoteqf></w:validateagainstschemas></w:punctuationkerning></w:trackformatting></w:trackmoves></w:worddocument></xml>
+<div style="text-align: justify;">
+<xml><w:worddocument><w:trackmoves><w:trackformatting><w:punctuationkerning><w:validateagainstschemas><w:donotpromoteqf><w:compatibility><w:breakwrappedtables><w:snaptogridincell><w:wraptextwithpunct><w:useasianbreakrules><w:dontgrowautofit><w:splitpgbreakandparamark><w:dontvertaligncellwithsp><w:dontbreakconstrainedforcedtables><w:dontvertalignintxbx><w:word11kerningpairs><m:mathpr><m:mathfont val="Cambria Math"><m:brkbin val="before"><m:brkbinsub val="--"><m:smallfrac val="off"><m:dispdef><m:lmargin val="0"><m:rmargin val="0"><m:defjc val="centerGroup">Now let’s take a look of how to implement AES in C, if you are going to copy this code make sure you <a href="http://code.google.com/p/byte-oriented-aes/">download </a>Malbrain's implementation and reference it from your application.</m:defjc></m:rmargin></m:lmargin></m:dispdef></m:smallfrac></m:brkbinsub></m:brkbin></m:mathfont></m:mathpr></w:word11kerningpairs></w:dontvertalignintxbx></w:dontbreakconstrainedforcedtables></w:dontvertaligncellwithsp></w:splitpgbreakandparamark></w:dontgrowautofit></w:useasianbreakrules></w:wraptextwithpunct></w:snaptogridincell></w:breakwrappedtables></w:compatibility></w:donotpromoteqf></w:validateagainstschemas></w:punctuationkerning></w:trackformatting></w:trackmoves></w:worddocument></xml><br />
+<xml><w:worddocument><w:trackmoves><w:trackformatting><w:punctuationkerning><w:validateagainstschemas><w:donotpromoteqf><w:compatibility><w:breakwrappedtables><w:snaptogridincell><w:wraptextwithpunct><w:useasianbreakrules><w:dontgrowautofit><w:splitpgbreakandparamark><w:dontvertaligncellwithsp><w:dontbreakconstrainedforcedtables><w:dontvertalignintxbx><w:word11kerningpairs><m:mathpr><m:mathfont val="Cambria Math"><m:brkbin val="before"><m:brkbinsub val="--"><m:smallfrac val="off"><m:dispdef><m:lmargin val="0"><m:rmargin val="0"><m:defjc val="centerGroup"></m:defjc></m:rmargin></m:lmargin></m:dispdef></m:smallfrac></m:brkbinsub></m:brkbin></m:mathfont></m:mathpr></w:word11kerningpairs></w:dontvertalignintxbx></w:dontbreakconstrainedforcedtables></w:dontvertaligncellwithsp></w:splitpgbreakandparamark></w:dontgrowautofit></w:useasianbreakrules></w:wraptextwithpunct></w:snaptogridincell></w:breakwrappedtables></w:compatibility></w:donotpromoteqf></w:validateagainstschemas></w:punctuationkerning></w:trackformatting></w:trackmoves></w:worddocument></xml></div>
+<xml><w:worddocument><w:trackmoves><w:trackformatting><w:punctuationkerning><w:validateagainstschemas><w:donotpromoteqf><w:compatibility><w:breakwrappedtables><w:snaptogridincell><w:wraptextwithpunct><w:useasianbreakrules><w:dontgrowautofit><w:splitpgbreakandparamark><w:dontvertaligncellwithsp><w:dontbreakconstrainedforcedtables><w:dontvertalignintxbx><w:word11kerningpairs><m:mathpr><m:mathfont val="Cambria Math"><m:brkbin val="before"><m:brkbinsub val="--"><m:smallfrac val="off"><m:dispdef><m:lmargin val="0"><m:rmargin val="0"><m:defjc val="centerGroup"><br /></m:defjc></m:rmargin></m:lmargin></m:dispdef></m:smallfrac></m:brkbinsub></m:brkbin></m:mathfont></m:mathpr></w:word11kerningpairs></w:dontvertalignintxbx></w:dontbreakconstrainedforcedtables></w:dontvertaligncellwithsp></w:splitpgbreakandparamark></w:dontgrowautofit></w:useasianbreakrules></w:wraptextwithpunct></w:snaptogridincell></w:breakwrappedtables></w:compatibility></w:donotpromoteqf></w:validateagainstschemas></w:punctuationkerning></w:trackformatting></w:trackmoves></w:worddocument></xml>
+<pre class="prettyprint lang-java"><span class="rem">// GLOBAL CONSTANTS</span>
+<span class="rem">// --------------------------------------</span>
+<span class="rem">//File name that contains the data to be encrypted</span>
+<span class="kwrd">static</span> <span class="kwrd">const</span> <span class="kwrd">char</span> *filename = <span class="str">"input.txt"</span>;
+
+<span class="rem">// INCLUDES </span>
+<span class="rem">// --------------------------------------</span>
+#include &lt;time.h&gt;
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;<span class="kwrd">string</span>.h&gt;
+
+<span class="rem">// DEFINES</span>
+<span class="rem">// --------------------------------------</span>
+<span class="rem">// Amount of encryption tasks to perform</span>
+<span class="preproc">#define</span> ITERATIONS  1
+
+<span class="rem">// AES Block size is 128 bits or 16 Bytes</span>
+<span class="preproc">#define</span> AES_BLOCK_SIZE 16
+
+<span class="rem">// Amount of columns in the state. AES defines always 4 because it </span>
+<span class="rem">//always encrypts 128 bit blocks. However, Rijndael can define more</span>
+<span class="preproc">#define</span> STATE_COLUMNS 4
+
+<span class="rem">// Amount of AES rounds to execute depending on the key length</span>
+<span class="preproc">#define</span> ROUNDS 10
+
+<span class="rem">// 1024 Bytes is the default start value when checking throughputs </span>
+<span class="preproc">#define</span> START_VALUE 1024
+
+<span class="rem">//Assert used to compare encryption outputs against NIST Test Vectors</span>
+<span class="preproc">#define</span> assert(x) <span class="kwrd">if</span>(!(x)){
+printf (<span class="str">"\nGeneric assert "</span> #x <span class="str">" has thrown an error\n"</span>);
+}
+
+<span class="kwrd">double</span> cpuEncrypt(<span class="kwrd">char</span>* <span class="kwrd">in</span>, <span class="kwrd">int</span> in_len, <span class="kwrd">char</span>* key, <span class="kwrd">char</span>* <span class="kwrd">out</span>)
+{
+<span class="kwrd">  int</span> i;
+unsigned <span class="kwrd">char</span> expkey[4 * STATE_COLUMNS * (ROUNDS + 1)];
+clock_t start, end;
+
+<span class="rem">  //Expand the key and store in key</span>
+ExpandKey (key, expkey);
+
+start = clock();
+
+<span class="kwrd">  for</span> ( i = 0; i &lt; in_len; i+=16 )
+Encrypt( <span class="kwrd">in</span>+i, expkey, <span class="kwrd">out</span>+i );
+
+end = clock();
+
+<span class="kwrd">  return</span> (end-start) / (<span class="kwrd">double</span>)CLOCKS_PER_SEC;
+}
+
+<span class="kwrd">static</span> <span class="kwrd">void</span> test_vectors()
+{
+<span class="kwrd">   int</span> i = 0;
+<span class="rem">   //NIST Test Vectors AES 128</span>
+<span class="rem">   //The following link contains the test vectors used below to guarantee </span>
+<span class="rem">   //that the functionality of the algorithm hast not been modified</span>
+<span class="rem">   //http://csrc.nist.gov/publications/nistpubs/800-38a/sp800-38a.pdf </span>
+unsigned <span class="kwrd">char</span> testPlainText[]  = {0x50, 0x68, 0x12, 0xA4, 0x5F, 0x08,
+0xC8, 0x89, 0xB9, 0x7F, 0x59, 0x80, 0x03, 0x8B, 0x83, 0x59};
+unsigned <span class="kwrd">char</span> testKeyText[] =  {0x00, 0x01, 0x02, 0x03, 0x05, 0x06,
+0x07, 0x08, 0x0A, 0x0B, 0x0C, 0x0D, 0x0F, 0x10, 0x11, 0x12};
+unsigned <span class="kwrd">char</span> testCipherText[] = {0xD8, 0xF5, 0x32, 0x53, 0x82, 0x89,
+0xEF, 0x7D, 0x06, 0xB5, 0x06, 0xA4, 0xFD, 0x5B, 0xE9, 0xC9};
+
+unsigned <span class="kwrd">char</span> <span class="kwrd">out</span>[16] = {0x0};
+
+<span class="rem">   //Display plaintext to the user</span>
+printf(<span class="str">"\n  PlaintText: "</span>);
+<span class="kwrd">   for</span> ( i = 0; i &lt; AES_BLOCK_SIZE; i++)
+printf(<span class="str">"%x"</span>, testPlainText[i]);
+printf(<span class="str">"\n"</span>);
+
+<span class="rem">   //Display key to the user</span>
+printf(<span class="str">"\  Key: "</span>);
+<span class="kwrd">   for</span> ( i = 0; i &lt; AES_BLOCK_SIZE; i++)
+printf(<span class="str">"%x"</span>, testKeyText[i]);
+printf(<span class="str">"\n"</span>);
+
+<span class="rem">   //Display ciphertext to the user</span>
+printf(<span class="str">"\  CipherText: "</span>);
+<span class="kwrd">   for</span> ( i = 0; i &lt; AES_BLOCK_SIZE; i++)
+printf(<span class="str">"%x"</span>, testCipherText[i]);
+printf(<span class="str">"\n"</span>);
+
+<span class="rem">   // Test encryption with OpenSSL     </span>
+cpuEncrypt (testPlainText,  <span class="kwrd">sizeof</span>(testPlainText), testKeyText, <span class="kwrd">out</span>);
+
+<span class="rem">   //Display encrypted data</span>
+printf(<span class="str">"\n  CPU Encryption: "</span>);
+<span class="kwrd">   for</span> (i = 0; i &lt; AES_BLOCK_SIZE; i++)
+printf(<span class="str">"%x"</span>, <span class="kwrd">out</span>[i]);
+
+<span class="rem">   //Assert that the encrypted output is the same as the </span>
+<span class="rem">   //NIST testCipherText vector </span>
+assert (memcmp (<span class="kwrd">out</span>, testCipherText, 16) == 0);
+}
+
+<span class="kwrd">static</span> <span class="kwrd">double</span> check_throughtputs ()
+{
+<span class="rem">   //Determines the amount of data to encrypt</span>
+<span class="kwrd">   int</span> i, size;
+size_t bytes_read;
+<span class="kwrd">   double</span> timer;
+
+<span class="rem">   //Pointer to the file were the data to be process is located</span>
+FILE *file_input;
+
+<span class="rem">   //Pointer to the input buffer, will hold the data read from the file  </span>
+<span class="kwrd">   char</span> *input_data;
+
+<span class="rem">   //Pointer to the output buffer which will hold the encrypted data </span>
+<span class="kwrd">   char</span> *output_data;
+<span class="kwrd">   int</span> fileSize;
+
+<span class="rem">  //AES 128 Bit Key</span>
+unsigned <span class="kwrd">char</span> ckey[] = {0x00, 0x01, 0x02, 0x03, 0x05,
+0x06, 0x07, 0x08, 0x0A, 0x0B, 0x0C, 0x0D, 0x0F, 0x10, 0x11, 0x12};
+
+<span class="rem">   // Read the file into memory</span>
+file_input = fopen (filename, <span class="str">"rb"</span>);
+fseek(file_input, 0, SEEK_END);
+fileSize = ftell(file_input);
+fseek(file_input, 0, SEEK_SET);
+
+<span class="rem">   //Allocate memory for the inputa and output </span>
+<span class="rem">   //data depending on the file size</span>
+input_data  = (<span class="kwrd">char</span>*)calloc (fileSize, <span class="kwrd">sizeof</span>(<span class="kwrd">char</span>));
+output_data = (<span class="kwrd">char</span>*)calloc (fileSize, <span class="kwrd">sizeof</span>(<span class="kwrd">char</span>));
+
+<span class="rem">   // It is important to know that the last 128 bit block </span>
+<span class="rem">   // to be encrypted can contain less than 128 bits to a</span>
+<span class="rem">   // for this test purpose input lenght is always aligned </span>
+<span class="rem">   // multiple of AES block size otherwise padding has to be implemented</span>
+bytes_read = fread (input_data, <span class="kwrd">sizeof</span>(<span class="kwrd">char</span>), fileSize, file_input);
+fclose (file_input);
+bytes_read = (<span class="kwrd">int</span>)(ceil (bytes_read / 16.0) * 16);
+
+printf(<span class="str">"\n%16s%16s%20s\n"</span>, <span class="str">"Total KB"</span>, <span class="str">"Seconds"</span>, <span class="str">"Throughput Mbps"</span>);
+
+<span class="rem">   //Increment the data size to be encrpted by 2 starting with until</span>
+<span class="rem">   //the end of the file is reached    </span>
+<span class="kwrd">   for</span> ( size = START_VALUE; size &lt;= fileSize ; size *= 2 )
+{
+timer = 0.0;
+<span class="kwrd">      for</span> ( i = 0; i &lt; ITERATIONS; ++i ){
+   timer += cpuEncrypt (input_data,  size, ckey, output_data);
+}
+
+printf (<span class="str">"%16i%16.3f%16.3f\n"</span>, size/1024, timer,
+(size*8.0/(1024*1024))/ timer);
+}
+
+printf (<span class="str">"\t\n--------------------------------------------------\n"</span>);
+
+<span class="rem">   //Free resources</span>
+free (input_data);
+free (output_data);
+
+<span class="kwrd">   return</span> timer;
+}
+
+<span class="kwrd">static</span> <span class="kwrd">void</span> run_cipher(){
+printf (<span class="str">"\nAES 128 Bit key"</span>);
+printf (<span class="str">"\t\nNIST Test Vectors: "</span>);
+printf (<span class="str">"\t\n--------------------------------------------------"</span>);
+test_vectors();
+printf (<span class="str">"\n  Test status: Passed\n"</span>);
+
+printf (<span class="str">"\t\nAES on CPU Throughputs: "</span>);
+printf (<span class="str">"\t\n--------------------------------------------------"</span>);
+check_throughtputs();
+}
+
+<span class="kwrd">int</span> main(<span class="kwrd">int</span> argc, <span class="kwrd">char</span> *argv[]){
+run_cipher();
+system(<span class="str">"PAUSE"</span>);
+<span class="kwrd">   return</span> 0;
+}</pre>
+<br />
+<div style="text-align: justify;">
+First, we execute a correctness test, it is performed to ensure that the algorithm’s functionality was not altered. This test takes a known plaintext and key, and gives back a known cipher text taken from the test vectors provided by the National Institute of Standards and Technology (NIST). After correctness is verified, the a 256MB file is loaded, the encryption takes place and the performance is evaluated. Remember that to be able to encrypt undetermined file sizes, it is necessary to split the data into 128 bit chunks so the data can be processed; this happens in the <span style="font-family: courier new;">cpuEncryptmethod</span>.  For a better understanding, we encrypt different amount of data; starting with 1KB and duplicating the amount per iteration until the whole size of the file is reached 262144KB (256MB). Each iteration prints the time it takes to process its respective amount of data so we can have an overview of how heavy the operation executing might be. The following picture shows the results obtained when running the application:</div>
+<br />
+<div style="text-align: center;">
+<a href="http://4.bp.blogspot.com/-qCCHWQqmm84/TXOXHQJ595I/AAAAAAAAA5A/43M7OdPYJGU/s1600/Untitled.png" onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}"><img alt="" border="0" id="BLOGGER_PHOTO_ID_5580970514093569938" src="http://4.bp.blogspot.com/-qCCHWQqmm84/TXOXHQJ595I/AAAAAAAAA5A/43M7OdPYJGU/s400/Untitled.png" style="cursor: pointer; display: block; height: 297px; margin: 0px auto 10px; text-align: center; width: 400px;" /></a>Throughputs obtained when encrypting a 256MB file on AES-B [<span style="font-style: italic;">click to enlarge</span>]<br />
+<div style="text-align: left;">
+<br />
+<div style="text-align: justify;">
+As it can be seen, the encryption test outputs the expected cipher text proposed by NIST, so we can be sure that the algorithm’s functionality is correct. The output shows a linear behavior, executing in average 45Mbps; this is due to the intensive computation the processor has to go through to encrypt the data. Remember this algorithm does not make heavy usage of pre-calculated look up tables to skip arithmetic, so nearly every single value required through the AES process has to be calculated, hence consuming all the CPU resources and eventually creating a bottleneck that won’t let the CPU process at a faster rate.</div>
+</div>
+</div>
+<br />
+<a href="http://2.bp.blogspot.com/-LkLqAzlPfPY/TXOlUHEEHcI/AAAAAAAAA5I/p0_H-pk4H2U/s1600/Untitled.png" onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}"><img alt="" border="0" id="BLOGGER_PHOTO_ID_5580986128154238402" src="http://2.bp.blogspot.com/-LkLqAzlPfPY/TXOlUHEEHcI/AAAAAAAAA5I/p0_H-pk4H2U/s400/Untitled.png" style="cursor: pointer; display: block; height: 400px; margin: 0px auto 10px; text-align: center; width: 391px;" /></a><br />
+<div style="text-align: justify;">
+Typically applications that require encryption/decryption processing need a lot of computing power and processes can take hours to complete, slow down applications or require databases to be offline, and many times this is unacceptable for 24x7 high available systems. In that way encryption/decryption processes must be done as fast as possible to avoid unwanted downtimes. OpenSSL is a cryptographic framework which provides different cipher implementations, among them AES. OpenSSL implements and improved version of the AES algorithm which relies on pre-calculated look up tables to skip arithmetic and relief sthe processor of many of its intensive operations improving considerably the performance obtained when encrypting/decrypting data. In future posts I will be showing how to encrypt using the AES algorithm implemented on AES, as well as comparing the throughputs achieved when using this library.</div>
+			
+				
+				
+				<br/>
+					<div align="justify" class="MsoNormal"
+						style="margin: 0in 0in 10pt;"></div>
+
+					<!-- AddThis Button BEGIN -->
+					<div
+						class="addthis_toolbox addthis_default_style addthis_32x32_style">
+							<a class="addthis_button_preferred_1"></a> <a
+							class="addthis_button_preferred_2"></a> <a
+							class="addthis_button_preferred_3"></a> <a
+							class="addthis_button_preferred_4"></a> <a
+							class="addthis_button_compact"></a> <a
+							class="addthis_counter addthis_bubble_style"></a>
+					</div>
+					<script type="text/javascript">
+						var addthis_config = {
+							"data_track_addressbar" : true
+						};
+					</script>
+					<script type="text/javascript"
+						src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-511e7f534b00ef7b"></script>
+					<!-- AddThis Button END -->
+
+
+
+
+
+				<div id="footerInnerSeparator"></div>
+			</div>
+
+
+		<div id="footerOuterSeparator"></div>
+
+		<div id="divFooter" class="footerArea">
+
+			<div class="divPanel">
+
+				<div class="row-fluid">
+					<div class="span3" id="footerArea1">
+
+						<h3>About</h3>
+
+						<p>I'm a software engineer currently located in Munich
+							Germany. The goal of this blog is to share useful information I
+							am interested in and some of my previous work. Mostly in the
+							programming area, but probably I will be posting thoughts of
+							general interest too.</p>
+
+					</div>
+					<div class="span3" id="footerArea2">
+
+						<h3>Recent Blog Posts</h3>
+						<p>
+							<a href="#" title="">Open Closed Principle</a><br /> <span
+								style="text-transform: none;">on December 2012</span>
+						</p>
+						<p>
+							<a href="#" title="">AES ECB basic implementation</a><br /> <span
+								style="text-transform: none;">on July 2012</span>
+						</p>
+						<p>
+							<a href="#" title="">Scrum</a><br /> <span
+								style="text-transform: none;">on March 2012</span>
+						</p>
+						<p>
+							<a href="blog.html" title="">VIEW ALL POSTS</a>
+						</p>
+
+					</div>
+					<div class="span3" id="footerArea3">
+
+						<h3>I could add some more content</h3>
+						<p></p>
+						<p>Duis mollis, est non commodo luctus, nisi erat porttitor
+							ligula, eget lacinia odio sem nec elit.</p>
+
+					</div>
+					<div class="span3" id="footerArea4">
+
+						<h3>Get in Touch</h3>
+
+						<ul id="contact-info">
+							<li><i class="social foundicon-skype icon"></i> <span
+								class="field">Skype:</span> <br /> cipriano.sanchez</li>
+							<li><i class="general foundicon-mail icon"></i> <span
+								class="field">Email:</span> <br /> <a
+								href="mailto:ciprianosanchez@gmail.com" title="Email">ciprianosanchez@gmail.com</a>
+							</li>
+
+						</ul>
+
+					</div>
+				</div>
+
+				<br />
+				<br />
+				<div class="row-fluid">
+					<div class="span12">
+						<p class="copyright">Copyright © 2013 Cipriano Sanchez. All
+							Rights Reserved.</p>
+
+						<p class="social_bookmarks">
+							<a href="https://twitter.com/bartzillacr" target="_blank"><i
+								class="social foundicon-twitter"></i> Twitter</a> <a
+								href="https://github.com/bartzilla" target="_blank"><i
+								class="social icon-github-alt"></i> GitHub</a> <a
+								href="http://stackoverflow.com/users/379119/bartzilla"
+								target="_blank"><i class="stackoverflow"></i>Stackoverflow</a> <a
+								href="http://instagram.com/_bartzilla" target="_blank"><i
+								class="social foundicon-instagram"></i> Instagram</a>
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<br />
+	<br />
+	<br />
+
+	<script src="scripts/jquery.min.js" type="text/javascript"></script>
+	<script src="scripts/bootstrap/js/bootstrap.min.js"
+		type="text/javascript"></script>
+	<script src="scripts/default.js" type="text/javascript"></script>
+
+
+
+
+
+</body>
+</html>

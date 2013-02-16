@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Cipriano Sanchez - Advanced Encryption Standard Algorithm</title>
+<title>Cipriano Sanchez - What is a Package?</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -44,7 +44,8 @@
 
 <link href="../styles/custom.css" rel="stylesheet" type="text/css" />
 </head>
-<body id="pageBody">
+<link href='http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css' rel='stylesheet' type='text/css'/> <script src='http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js' type='text/javascript'></script>
+<body id="pageBody" onload='prettyPrint()'>
 
 	<div class="container">
 		<div class="row-fluid">
@@ -106,131 +107,114 @@
 
 				<div class="breadcrumbs">
 					<a href="../index.html">Home</a>&nbsp;/&nbsp;<a href="../blog.html">Blog</a>&nbsp;/&nbsp;
-					<span>Advanced Encryption Standard Algorithm</span>
+					<span>What is a Package?</span>
 				</div>
 
-				<div class="row-fluid">
-				<div id="divMain">
-					<h1>Advanced Encryption Standard Algorithm</h1>
-					<div align="justify" class="MsoNormal"
-						style="margin: 0in 0in 10pt;">In the next days I will be
-						writing about the AES algorithm, so I am going to start with a
-						brief historical introduction and basic description of the
-						algorithm before I move into more technical stuff.</div>
-					<div align="justify" class="MsoNormal"
-						style="margin: 0in 0in 10pt;">
-						In January 1997, the US National Institute for Standards and
-						Technology (NIST) announced a competition to develop a new
-						encryption algorithm to replace the old Data Encryption Standard
-						DES. This latter algorithm was urged to be replaced due to
-						computational power improvements making of DES a weak cipher. Some
-						computers at the time were capable to break DES inspecting its key
-						space of 2^56 <span style="font-family: 'Georgia', 'serif';">keys
-							by brute force. </span>
-					</div>
-					<div align="justify" class="MsoNormal"
-						style="margin: 0in 0in 10pt;">
-						The new encryption standard developed, was the Advanced Encryption
-						Standard or AES becoming the United States encryption standard for
-						sensitive information defined in Federal Information Processing
-						Standard (FIPS 197). Unlike the design of DES, AES was designed as
-						an open and public competition and many companies and researchers
-						around the world participated in the contest . In total fifteen
-						new algorithms were submitted and a second round narrow the choice
-						to five of these. Among them was the Rijndael algorithm which in
-						2001 was announced to be the winner cipher. Rijndael was designed
-						by two Belgium cryptographers; Joan Daemen and Vincent Rijmen from
-						which the algorithm receives its name<span
-							style="font-family: Calibri;">. </span>
-					</div>
-					<div align="justify" class="MsoNormal"
-						style="margin: 0in 0in 10pt;">
-						AES is a symmetric algorithm based on the original Rijndael
-						algorithm. It encrypts in blocks of 128 bits of data called
-						plaintext, and transforms it into an encrypted new block of the
-						same length called ciphertext. The difference between Rijnadael
-						and AES is that Rijndael encrypts blocks of data of 128, 192 and
-						also 256 bits and AES only encrypts blocks of 128 bits. In order
-						to encrypt AES makes usage of a key which is going to be secret
-						and shared between the encryption/decryption parties. The key was
-						designed to have sizes of 128-bits, 192-bits or 256-bits length.
-						</o:p>
+				
+				<h1>What is a Package?</h1>
 
-					</div>
-					<div align="center">
-						<br />
-					</div>
-					<div align="center" class="MsoNormal" style="margin: 0in 0in 10pt;">
-						<span style="font-family: Calibri;"></span>
-					</div>
-					<img alt="" border="0" id="BLOGGER_PHOTO_ID_5535339048901458274"
-						src="http://3.bp.blogspot.com/_urB2DqfA9zs/TNF5iZkeuWI/AAAAAAAAAzw/Quq-TZ1it24/s320/Untitled.png"
-						style="cursor: hand; display: block; height: 238px; margin: 0px auto 10px; text-align: center; width: 320px;" />
+			<div style="text-align: justify;">
+				Packages are namespaces that organize a group of related classes and
+				interfaces. Packages can be thought as folders on your computer
+				system. Many projects might contain html pages in one folder, images
+				in another, scripts, interfaces and so on. Normally, a real world
+				software written in Java contains hundreds or even thousands of Java
+				classes, so it makes sense to keep all these files organized by
+				placing related files into packages. Packages make easier to find
+				related files and use them. As well packages are helpful because
+				they avoid naming conflicts and facilitate control access.<br />
+			</div>
+			<br />
+			<div style="text-align: center;">
+				<a
+					onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}"
+					href="http://1.bp.blogspot.com/-RpekdDptbYU/TWUII74qy3I/AAAAAAAAA4U/yZ7_Zc1mGQc/s1600/Unbenannt.bmp"><img
+					style="display: block; margin: 0px auto 10px; text-align: center; cursor: pointer; width: 270px; height: 374px;"
+					src="http://1.bp.blogspot.com/-RpekdDptbYU/TWUII74qy3I/AAAAAAAAA4U/yZ7_Zc1mGQc/s400/Unbenannt.bmp"
+					alt="" id="BLOGGER_PHOTO_ID_5576872663175580530" border="0" /></a><span
+					style="font-style: italic;">Typical project structure using
+					packages in Eclipse</span><br />
+				<div style="text-align: left;">
 					<br />
-					<div align="center">
-						<em>Image taken from a very cool AES animation found in: <a
-							href="http://www.formaestudio.com/rijndaelinspector">http://www.formaestudio.com/rijndaelinspector</a>
-						</em>
+					<div style="text-align: justify;">
+						The previous image depicts a project called Restaurant with 3
+						different packages: restaurant.api, restaurant.lib and test. And
+						within the packages a set of related classes. One common example
+						of packages can be found in the Java platform itself. In it,
+						classes are included on various packages that bundle classes by
+						function: fundamental classes are in java.lang, classes for
+						reading and writing (I/O) are in java.io and so forth.<br />
 					</div>
-					<div class="MsoNormal" style="margin: 0in 0in 10pt;">
-						<span style="font-family: Calibri;"></span>
-					</div>
-					<div class="MsoNormal" style="margin: 0in 0in 10pt;"></div>
-					<div class="MsoNormal" style="margin: 0in 0in 10pt;"></div>
-					<div align="justify" class="MsoNormal"
-						style="margin: 0in 0in 10pt;">
-						The algorithm performs a number of rounds transforming the
-						plaintext depending on the key length. For example, when using a
-						128 bit key the algorithm executes 10 rounds, when using 192 bit
-						keys 12 rounds and finally when using a 256 bit key 14 rounds are
-						executed. Through the process the 128 bit block of plaintext will
-						go to what we are going to call as the <i
-							style="mso-bidi-font-style: normal;">AES encryption process</i>
-						illustrated in the image above, and the key will go through a
-						process called the <i style="mso-bidi-font-style: normal;">KeyExpansion</i>
-						or sometimes referred to as the <i
-							style="mso-bidi-font-style: normal;">KeySchedule</i> (Generate
-						expanded keys for the different AES rounds). The 128 bit block of
-						plaintext will be processed in an intermediate <i
-							style="mso-bidi-font-style: normal;">state</i> which “can” be
-						seen as a 4x4 matrix holding 16 bytes (is not always a real matrix
-						and can be a vector).
-						</o:p>
+					<br />Suppose you write a group of classes that represent graphic
+					objects, such as circles, rectangles, lines, and points. You also
+					write an interface, Draggable, that classes implement if they can
+					be dragged with the mouse.<br />
+				</div>
+			</div>
+			<br />
+			<pre class="prettyprint language-java">
+//in the Draggable.java file
+package graphics;
+public interface Draggable {
+. . .
+}
 
-					</div>
-					<div align="justify" class="MsoNormal"
-						style="margin: 0in 0in 10pt;">
-						If we look back to the AES process illustrated this refers
-						particularly to AES-128 bit key which executes a total of 10
-						rounds. As we can see, AES consists of only 4 operations:
-						SubBytes, ShiftRows, MixColumns and AddRoundKey. It is important
-						to note that the very last round differs from the rest of rounds
-						by skipping the MixColumns process. <span
-							style="mso-spacerun: yes;"></span>Before the plaintext is
-						transformed to ciphertext it has to pass through all these
-						operations transforming gradually the plaintext stored on the
-						state matrix into encrypted text which will result into the final
-						cipher text.
-						</o:p>
+//in the Graphic.java file
+package graphics;
+public abstract class Graphic {
+. . .
+}
 
-					</div>
-					<div align="justify" class="MsoNormal"
-						style="margin: 0in 0in 10pt;">
-						This is an introductory and general explanation of the AES
-						algorithm. In future posts I will be explaining how the different
-						AES operations work. However, if in the meantime you feel
-						interested in getting to know more about the AES steps I really
-						recommend checking out this AES encryption animation (<em><span
-							style="font-family: 'Georgia', 'serif'; mso-bidi-: minor-bidifont-family:'Times New Roman';"><a
-								href="http://www.formaestudio.com/rijndaelinspector"><span
-									style="color: blue;">http://www.formaestudio.com/rijndaelinspector</span></a></span></em>)
-						it gives a very simple understanding of how AES works without
-						digging into complex mathemtical explanations. Though, if that is
-						what you need “The Design of Rijndael” or the “AES specification”
-						might be more useful.
-						</o:p>
+//in the Circle.java file
+package graphics;
+public class Circle extends Graphic implements Draggable {
+. . .
+}
 
-					</div><br/>
+//in the Rectangle.java file
+package graphics;
+public class Rectangle extends Graphic implements Draggable {
+. . .
+}
+
+//in the Point.java file
+package graphics;
+public class Point extends Graphic implements Draggable {
+. . .
+}
+
+//in the Line.java file
+package graphics;
+public class Line extends Graphic implements Draggable {
+. . .
+}				
+			</pre>
+			<p style="margin-bottom: 0cm; font-style: normal;" align="JUSTIFY"
+				lang="en-US">Some of the advantages programmers can get by
+				bundling related classes and interfaces in a package include the
+				following :</p>
+			<ul>
+				<li><p style="margin-bottom: 0cm;" align="JUSTIFY" lang="en-US">
+						<span style="font-style: normal;">You and other programmers
+							can easily determine that these types(classes &amp; interfaces)
+							are related. </span>
+					</p></li>
+				<li><p style="margin-bottom: 0cm;" align="JUSTIFY" lang="en-US">
+						<span style="font-style: normal;">You and other programmers
+							know where to find types that can provide graphics-related
+							functions. </span>
+					</p></li>
+				<li><p style="margin-bottom: 0cm;" align="JUSTIFY" lang="en-US">The
+						names of your types won't conflict with the type names in other
+						packages because the package creates a new namespace.</p></li>
+				<li><p style="margin-bottom: 0cm;" align="JUSTIFY" lang="en-US">You
+						can allow types within the package to have unrestricted access to
+						one another yet still restrict access for types outside the
+						package.</p></li>
+			</ul>
+
+
+			<br/>
 					<div align="justify" class="MsoNormal"
 						style="margin: 0in 0in 10pt;"></div>
 
@@ -254,15 +238,12 @@
 					<!-- AddThis Button END -->
 
 
-				</div>
-
-
 
 
 
 				<div id="footerInnerSeparator"></div>
 			</div>
-		</div>
+
 
 		<div id="footerOuterSeparator"></div>
 
