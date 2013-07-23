@@ -1,0 +1,689 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Cipriano Sanchez - Dependency Injection with Spring</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<link href="../scripts/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../scripts/bootstrap/css/bootstrap-responsive.min.css"
+	rel="stylesheet">
+
+<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+<!-- Icons -->
+<link href="../scripts/icons/general/stylesheets/general_foundicons.css"
+	media="screen" rel="stylesheet" type="text/css" />
+<link href="../scripts/icons/social/stylesheets/social_foundicons.css"
+	media="screen" rel="stylesheet" type="text/css" />
+<!--[if lt IE 8]>
+        <link href="scripts/icons/general/stylesheets/general_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
+        <link href="scripts/icons/social/stylesheets/social_foundicons_ie7.css" media="screen" rel="stylesheet" type="text/css" />
+    <![endif]-->
+<link rel="stylesheet"
+	href="../scripts/fontawesome/css/font-awesome.min.css">
+<!--[if IE 7]>
+        <link rel="stylesheet" href="scripts/fontawesome/css/font-awesome-ie7.min.css">
+    <![endif]-->
+
+
+
+<link href="http://fonts.googleapis.com/css?family=Zeyada"
+	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Helvetica+Neue"
+	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Terminal+Dosis+Light"
+	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Abel"
+	rel="stylesheet" type="text/css">
+
+<link href="../styles/custom.css" rel="stylesheet" type="text/css" />
+</head>
+<link
+	href='http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css'
+	rel='stylesheet' type='text/css' />
+<script
+	src='http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.js'
+	type='text/javascript'></script>
+<body id="pageBody" onload='prettyPrint()'>
+
+	<div class="container">
+		<div class="row-fluid">
+			<div class="span5">
+
+				<div id="divLogo">
+					<a href="../index.html" id="divSiteTitle">Cipriano Sanchez</a><br />
+					<a href="../index.html" id="divTagLine">Site & Blog</a>
+				</div>
+
+			</div>
+			<div class="span7">
+
+				<div id="divMenuRight" class="pull-right">
+					<div class="navbar">
+						<button type="button"
+							class="btn btn-navbar-highlight btn-large btn-primary"
+							data-toggle="collapse" data-target=".nav-collapse">
+							NAVIGATION <span class="icon-chevron-down icon-white"></span>
+						</button>
+						<div class="nav-collapse collapse">
+							<ul class="nav nav-pills ddmenu">
+								<li class="dropdown active"><a href="../index.html">Home</a></li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle">Site
+										<b class="caret"></b>
+								</a>
+									<ul class="dropdown-menu">
+										<li><a href="#">Resume</a></li>
+										<li><a href="../blog.html">Blog</a></li>
+										<li><a href="http://instagram.com/_bartzilla"
+											target="_blank">Instagram</a></li>
+									</ul></li>
+								<li class="dropdown"><a href="../blog.html">Blog</a></li>
+								<li class="dropdown"><a href="../about.html">About</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="divBoxed" class="container">
+
+		<div class="transparent-bg"
+			style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; zoom: 1;"></div>
+
+		<div class="divPanel notop nobottom">
+			<div class="row-fluid">
+				<div class="span12">
+					<div id="contentInnerSeparator"></div>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="divPanel notop page-content">
+
+			<div class="breadcrumbs">
+				<a href="../index.html">Home</a>&nbsp;/&nbsp;<a href="../blog.html">Blog</a>&nbsp;/&nbsp;
+				<span>Dependency Injection with Spring</span>
+			</div>
+
+
+			<h1>Dependency Injection with Spring</h1>
+			<div style="text-align: justify;">
+				<br /> <em>If you are interested in getting the source code
+					and the complete working application of this post you can</em> clone <em>the
+					project from my <a
+					href="https://github.com/bartzilla/Dependency-Injection-with-Spring"
+					target="_blank">GitHub</a> profile.
+				</em><br /> <br />
+			</div>
+			<h2>Introduction</h2>
+			<div style="text-align: justify;">
+				<br />Dependency Injection (sometimes referred to as Inversion of
+				Control - IoC) is a design pattern that aims to produce scalable
+				software by decoupling objects. Developers benefit from it because
+				it sets the blueprints for coding software architectures that are:
+				simpler, easier to understand, easier to modify, and easier to test.<br />
+
+				<br />Dependency Injection (DI) often relies on a container, which
+				is an application in charge to configure all required collaborators
+				that an object relies on by loading information from an external
+				file. An application container can also be implemented by developers
+				as part of a project. However, writing a sophisticated container
+				that is going to be able to read configuration files, parse them and
+				presumably do error checking requires effort and it could be very
+				time consuming work. But luckily, in the last years there have been
+				open source projects that have implemented just that. Among these
+				projects, and probably the most widely used we have the <a
+					href="http://www.springsource.org/" target="_blank">Spring
+					Framework</a>.<br />
+				<br />
+
+				<div style="text-align: justify;">
+					<a href="http://www.springsource.org/" target="_blank">Spring</a>
+					is an open source framework comprised of independent modules
+					(Spring: Core, MVC, AOP and several more..) that aim to address
+					complexity of enterprise development. There's lots to say about <a
+						href="http://www.springsource.org/" target="_blank">Spring</a>
+					really, but in this post we're going to concentrate on its core
+					module; which is the module that provides a DI container that
+					allows developers to easily implement this design pattern without
+					dealing with the implementation details.
+				</div>
+				<br />
+
+				<h2>Motivation</h2>
+
+				<p class="MsoNormal" style="text-align: justify">The term
+					coupling in software development has a negative connotation;
+					essentially because it implies that two objects are tight together.</p>
+
+
+				<pre class="prettyprint language-java">
+public class BookService...
+	public void registerNewBook(Book newBook) 
+	{
+		// Tightly coupled to BookDaoImpl
+		BookDaoImpl bookDao = new BookDaoImpl();
+		bookDao.save(newBook);
+	}
+				</pre>
+			</div>
+			<p style="text-align: justify;">
+				The previous class is coupled because we have hardcoded the
+				instantiation of <span style="font-family: courier new;">BookDaoImpl</span>,
+				and that severely limits the service capabilities for processing
+				different types of daos. What would happen if tomorrow you want to
+				process different strategies for saving books? i.e using Jdbc or
+				Hibernate? ..No problem! I can always come up with something like
+				this:
+			</p>
+
+
+
+			<pre class="prettyprint language-java">
+	
+	// easy, I've created a new Hibernate implementation!
+	// that's all I need!! Right? :/
+	BookDaoHibernateImpl bookDao = new BookDaoHibernateImpl()
+				</pre>
+
+			<div style="text-align: justify;">
+				Fine, that would do the job but clearly this is not a good design.
+				In this case our <span style="font-family: courier new;">BookService</span>
+				class won't be able to deal with new strategies. Oh well yes!,
+				unless you want to go through the hassle of reflecting those changes
+				across classes (..and in a full blown application that reads
+				HUNDREDS of classes!!), re-test, re-document, recompile and live
+				with the fact that you have a poor designed service and could have
+				saved a lot of work if only you had designed that better.
+			</div>
+			<br />
+			<h2>Reducing Coupling</h2>
+
+			<div style="text-align: justify;">In order to reduce coupling
+				between classes there are three non-atomic steps that can be
+				performed in a system:</div>
+			<br />
+
+			<ol>
+				<li>Program to interfaces</li>
+				<li>Dependency Injection</li>
+				<li>Centralize Configuration</li>
+			</ol>
+
+			<br />
+			<h2>Implementing Dependency Injection using Spring</h2>
+
+			<div style="text-align: justify;">
+				<span style="font-weight: bold; font-style: italic;">Step 1 -
+					Program to an interface: </span> This a very fundamental OOP principle,
+				and hast to do with <a
+					href="http://docs.oracle.com/javase/tutorial/java/IandI/polymorphism.html"
+					target="_blank">Polymorphism</a>; basically, when defining object's
+				types as interfaces they'll be abstracted of concrete behaviors
+				allowing to switch implementations at runtime.
+			</div>
+			<br />
+
+			<p style="text-align: justify;">
+				Let's say we have two services that interact with each other. We
+				have a <span style="font-family: courier new;">BookServiceImpl</span>
+				which is in charge of doing some business logic in the service layer
+				and it communicates with <span style="font-family: courier new;">BookDaoImpl</span>
+				to perform database operations in the persistence layer.
+			</p>
+
+
+			<pre class="prettyprint language-java">
+public class BookDaoImpl implements BookDao
+{
+    //Following the program to an interface principle
+    //we've created a new Interface BookDao
+    //with a save method
+    public void save(Book book)
+    {
+        System.out.println("Saving book: " + book);
+    }
+}
+</pre>
+
+			<pre class="prettyprint language-java">
+public class BookServiceImpl implements BookService
+{
+    //Following the program to an interface principle
+    //we've created a new Interface BookService
+    //with a registerNewBook method
+     public void registerNewBook(Book newBook)
+    {
+        //We can instantiate here any implementer of BookDao
+        BookDao bookDao = new BookDaoImpl();
+        bookDao.save(newBook);
+    }
+}
+</pre>
+
+
+			<div style="text-align: justify;">
+				Both classes now implement <span style="font-family: courier new;">BookDao
+				</span> and <span style="font-family: courier new;">BookService</span>
+				respectively. Interfaces will force implementers to provide concrete
+				implementations of all methods that the interface defines (Unless
+				the implementer is abstract but that's another story). In that way
+				we can assign references of implementers to an interface type and
+				invoke its methods because the implementer has agreed to provide
+				concrete implementations to all methods declared in the interface.
+				So in our case we've done exactly that by assigning <span
+					style="font-family: courier new;">BookDaoImpl</span> to <span
+					style="font-family: courier new;">bookDao</span> and now all that <span
+					style="font-family: courier new;">bookDao</span> does is to respond
+				to the save method of the concrete implementation we've passed it.
+				i.e a JDBC, Hibernate or a Plaintext implementation
+			</div>
+			<br />
+
+
+			<p style="text-align: justify;">
+				<span style="font-weight: bold; font-style: italic;">Step two
+					- Dependency Injection: </span> The idea behind DI is that instead of
+				objects being responsible for instantiating the references they
+				require these references are provided or injected to them. In step
+				one we've gained some flexibility by coding to interfaces. However,
+				the implementation class <span style="font-family: courier new;">BookDaoImpl</span>
+				is still hard coded and as explained before, we don't want to go
+				through the hassle of editing dozens of classes when your boss
+				decides to persist books using Hibernate. So then lets re-design
+				this class.
+			</p>
+
+			<pre class="prettyprint language-java">			
+public class BookServiceImpl implements BookService
+{
+    private BookDao bookDao;
+
+    public void registerNewBook(Book newBook)
+    {
+        bookDao.save(newBook);
+    }
+    
+    public void setBookDao(BookDao bookDao)
+    {
+        this.bookDao = bookDao;
+    }         
+}	
+</pre>
+
+			<div style="text-align: justify;">
+				We've modified <span style="font-family: courier new;">BookServiceImpl</span>
+				to include a <span style="font-family: courier new;">BookDao</span>
+				private attribute in which we'll inject an implementation reference
+				using <span style="font-family: courier new;">setBookDao(BookDao
+					bookDao)</span> rather than hardcoding it. In that way we can use <span
+					style="font-family: courier new;">BookServiceImpl</span> in many
+				different ways, we can set a <span style="font-family: courier new;">BookDaoHibernateImpl</span>
+				a <span style="font-family: courier new;">BookDaoJdbcImpl</span> or
+				even more interesting a <span style="font-family: courier new;">BookDaoMockImpl</span>
+				to mock the data base for rapid prototyping.
+			</div>
+			<br />
+			<p style="text-align: justify;">
+				If we want to switch implementations we could create a main class to
+				configure the dependencies (this process is known as "wiring") and
+				see the application working. Notice, that in the main class you can
+				wire dependencies by just instantiating the implementation that you
+				require i.e <span style="font-family: courier new;">BookDao
+					bookDao = new BookDaoMockImpl();</span> The following code snippet
+				exemplifies a main harness class where you can inject dependencies
+				as you'd like.<br />
+			</p>
+			<pre class="prettyprint language-java">		
+public class Client
+{
+    public static void main(String[] args)
+    {
+        //Create a new book
+        Book newBook = new Book("1234", "Spring in Action", "Rod Johnson");
+        
+        //Create the bookService to process books
+        BookServiceImpl bookService = new BookServiceImpl();
+
+        //Plugin any impl you'd like
+        BookDao bookDao = new BookDaoMockImpl();
+        bookService.setBookDao(bookDao);
+
+        //register the book in the data base
+        bookService.registerNewBook(newBook);
+    }
+}
+</pre>
+
+
+			<div style="text-align: justify;">
+				<span style="font-weight: bold; font-style: italic;">Step
+					three - Centralize Configuration: </span> A good software development
+				practice is to encapsulate aspects that are likely to vary into a
+				single place. We've partially accomplished that statement. However,
+				a better approach is to define these changes in an external file (of
+				any kind: *.java, *.txt, *.xml etc) and then load them with all the
+				required configuration. This file is what the container will use to
+				configure all the dependencies required by all objects in the
+				system. Currently, there are several open source implementations of
+				DI containers i.e <a href="https://code.google.com/p/google-guice/"
+					target="_blank">Google-Guice</a>, <a
+					href="http://picocontainer.com/" target="_blank">PicoContainer</a>,
+				and of course <a href="http://www.springsource.org/" target="_blank">Spring</a>.
+			</div>
+			<br />
+
+			<div style="text-align: justify;">
+				Download the Spring framework from the Spring's <a
+					href="http://www.springsource.org/download/community"
+					target="_blank">download</a> website. Make sure to unzip the file
+				and reference the library in the runtime classpath. In Eclipse for
+				example: Right click on the project -> Properties -> Java Build path
+				-> Libraries -> Add jars. .
+			</div>
+			<br />
+
+			<p style="text-align: justify;">With Spring in place we can start
+				off by declaring the external configuration file. Spring is quite
+				evolved and you can nowadays configure objects (called beans in
+				Spring) in many different ways. But we are going to stick to the
+				most traditional way of doing it which is by injecting dependencies
+				via setters and by using XML. Here's the required xml configuration
+				file for our application:</p>
+
+
+			<h6>
+				<div style="text-align: center;">spring-config.xml</div>
+			</h6>
+			<!-- code formatted by http://manoli.net/csharpformat/ -->
+			<pre class="csharpcode">
+<span class="kwrd">&lt;!</span><span class="html">DOCTYPE</span> <span
+					class="attr">beans</span> <span class="attr">PUBLIC</span> <span
+					class="kwrd">"-//SPRING//DTD BEAN//EN"</span>
+        <span class="kwrd">"http://www.springframework.org/dtd/spring-beans.dtd"</span><span
+					class="kwrd">&gt;</span>
+<span class="kwrd">&lt;</span><span class="html">beans</span><span
+					class="kwrd">&gt;</span>
+    <span class="kwrd">&lt;</span><span class="html">bean</span> <span
+					class="attr">id</span><span class="kwrd">="bookDao"</span> <span
+					class="attr">class</span><span class="kwrd">="dao.BookDaoImpl"</span><span
+					class="kwrd">/&gt;</span>
+
+    <span class="kwrd">&lt;</span><span class="html">bean</span> <span
+					class="attr">id</span><span class="kwrd">="bookService"</span> <span
+					class="attr">class</span><span class="kwrd">="service.BookServiceImpl"</span><span
+					class="kwrd">&gt;</span>
+        <span class="kwrd">&lt;</span><span class="html">property</span> <span
+					class="attr">name</span><span class="kwrd">="bookDao"</span> <span
+					class="attr">ref</span><span class="kwrd">="bookDao"</span><span
+					class="kwrd">/&gt;</span>
+    <span class="kwrd">&lt;/</span><span class="html">bean</span><span
+					class="kwrd">&gt;</span>
+<span class="kwrd">&lt;/</span><span class="html">beans</span><span
+					class="kwrd">&gt;</span>
+			</pre>
+
+
+
+			<div style="text-align: justify;">
+				When using XML as a file configurator you need to define the beans
+				that interact in your system within the tag <span class="html">&lt;beans&gt;</span>.
+				In our example we have two beans: <span
+					style="font-family: courier new;">BookDaoImpl</span> and <span
+					style="font-family: courier new;">BookServiceImpl</span>. Each
+				entry has a root tag called <span class="html">&lt;bean&gt;</span>
+				where we define the <span style="font-family: courier new;">id,</span>
+				and the qualified <span style="font-family: courier new;">class</span>
+				name. Remember that we defined an attribute to be set in <span
+					style="font-family: courier new;">BookServiceImpl.java</span> class
+				called <span style="font-family: courier new;">bookDao</span> to
+				inject the required references (i.e new <span
+					style="font-family: courier new;">BookServiceImpl()</span> or any
+				required implementation ) ? Well, in order to do that with Spring we
+				define the <span class="html">&lt;property&gt;</span> tag and pass
+				the reference that we require; in this case <span
+					style="font-family: courier new;">bookDao</span> which resolves to
+				<span style="font-family: courier new;">BookDaoImpl</span>.
+			</div>
+			<br />
+			<p style="text-align: justify;">The only thing we are missing is
+				to load the bean from our client. So let's edit the harness main
+				class to test this out.</p>
+			<pre class="prettyprint language-java">
+public class Client...
+	public static void main(String[] args)
+	{
+	    //Create the Spring container
+	    ApplicationContext container = new ClassPathXmlApplicationContext("spring-config.xml");
+	
+	    //Create the bookService to process books
+	    BookService bookService = (BookService) container.getBean("bookService");
+	    //Create a new book
+	    Book newBook = new Book("1234", "Spring in Action","Rod Johnson");
+	
+	    //register a new book
+	    bookService.registerNewBook(newBook);
+	}	
+</pre>
+			<div style="text-align: justify;">
+				Where the container object is telling Spring which strategy to use
+				in order to load the configuration file (there are several
+				strategies to load the config file which are not relevant by now)
+				but the important bit here is how to tell Spring which bean is
+				required. And this is done by sending the bean id as a parameter in
+				<span style="font-family: courier new;">container.getBean("bookService");</span>.
+				Additionally the container is capable of reaching all kind of
+				objects and therefore we are required to explicitly cast to <span
+					style="font-family: courier new;">BookService</span>.
+			</div>
+			<br />
+
+
+			<p style="text-align: justify;">
+				This way of working give us full flexibility of configuring our
+				dependencies, by only doing a single change in a single file. Let's
+				say we have finally implemented <span
+					style="font-family: courier new;">BookDaoHibernateImpl</span>. Then
+				we would only need to change the class attribute in the <span
+					class="html">&lt;bean&gt;</span> tag.
+			</p>
+			<h6>
+				<div style="text-align: center;">spring-config.xml</div>
+			</h6>
+			<!-- code formatted by http://manoli.net/csharpformat/ -->
+			<pre class="csharpcode">
+<span class="kwrd">&lt;</span><span class="html">bean</span> <span
+					class="attr">id</span><span class="kwrd">="bookDao"</span> <span
+					class="attr">class</span><span class="kwrd">="dao.BookDaoHibernateImpl"</span><span
+					class="kwrd">/&gt;</span>
+			</pre>
+
+			<div style="text-align: justify;">
+				And <span style="font-family: courier new;">BookDaoHibernateImpl</span>
+				or any other <span style="font-family: courier new;">BookDao</span>
+				implementation will be injected as a <span
+					style="font-family: courier new;">bookDao</span> property in <span
+					style="font-family: courier new;">BookServiceImpl</span> without
+				modifying a single line of java code, without recompiling and
+				without retesting.
+			</div>
+
+			<br />
+			<h2>Conclusion</h2>
+			<div style="text-align: justify;">Dependency Injection is a
+				popular design pattern in the software industry due to it allows to
+				write more scalable, reusable, maintainable, and testable software.
+				By implementing DI software applications become more scalable
+				because objects will be capable of adapting to change faster. By
+				coding to interfaces we can swap required implementations without
+				even touching existing production functionality (..huge gain just by
+				decreasing the risk of letting developers manipulate already tested,
+				documented, and released functionality). Reusability is achieved by
+				having modular objects that can be plugged-in across the
+				application. Better testability because having loosely coupled
+				objects allow developers to write unit tests using mocks;
+				concentrating in units without indirectly testing collaborator
+				dependencies. And finally better maintainability because aspects
+				that are likely to change, (and potentially break existing
+				functionality and introduce new bugs) are concentrated in one single
+				place.</div>
+			<br />
+
+			<h3>Further Reading</h3>
+			<ul>
+				<li>Martin Fowler. <a href="https://github.com/bartzilla/Dependency-Injection-with-Spring" target="_blank"><em>"Inversion of Control Containers and the Dependency Injection pattern"</em></a></li>
+				<li>Bill Venners. <a href="http://www.artima.com/lejava/articles/designprinciples.html" target="_blank"><em>"Program to an interface, not an implementation"</em></a></li>
+				<li>Oracle Inc, The Java tutorials. <a href="https://github.com/bartzilla/Dependency-Injection-with-Spring" target="_blank"><em>"Lesson: Interfaces and Inheritance - Polymorphism"</em></a></li>
+				
+			</ul>
+			
+			
+			
+
+			<div class="g-plusone" data-size="standard" data-count="true"></div>
+
+
+			<br />
+			<div align="justify" class="MsoNormal" style="margin: 0in 0in 10pt;"></div>
+
+			<!-- AddThis Button BEGIN -->
+			<div
+				class="addthis_toolbox addthis_default_style addthis_32x32_style">
+				<a class="addthis_button_preferred_1"></a> <a
+					class="addthis_button_preferred_2"></a> <a
+					class="addthis_button_preferred_3"></a> <a
+					class="addthis_button_preferred_4"></a> <a
+					class="addthis_button_compact"></a> <a
+					class="addthis_counter addthis_bubble_style"></a>
+			</div>
+			<script type="text/javascript">
+				var addthis_config = {
+					"data_track_addressbar" : true
+				};
+			</script>
+			<script type="text/javascript"
+				src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-511e7f534b00ef7b"></script>
+			<!-- AddThis Button END -->
+
+
+
+
+
+			<div id="footerInnerSeparator"></div>
+		</div>
+
+
+		<div id="footerOuterSeparator"></div>
+
+		<div id="divFooter" class="footerArea">
+
+			<div class="divPanel">
+
+				<div class="row-fluid">
+					<div class="span3" id="footerArea1">
+
+						<h3>About</h3>
+
+						<p>I'm a software engineer currently located in Munich
+							Germany. The goal of this blog is to share useful information I
+							am interested in and some of my previous work. Mostly in the
+							programming area, but probably I will be posting thoughts of
+							general interest too.</p>
+
+					</div>
+					<div class="span3" id="footerArea2">
+
+						<h3>Recent Blog Posts</h3>
+						<p>
+							<a href="#" title="">Dependency Injection with Spring</a><br />
+							<span style="text-transform: none;">on July 2013</span>
+						</p>
+						<p>
+							<a href="#" title="">Open Closed Principle</a><br /> <span
+								style="text-transform: none;">on August 2012</span>
+						</p>
+						<p>
+							<a href="#" title="">AES ECB basic implementation</a><br /> <span
+								style="text-transform: none;">on June 2012</span>
+						</p>
+						<p>
+							<a href="blog.html" title="">VIEW ALL POSTS</a>
+						</p>
+
+					</div>
+					<div class="span3" id="footerArea3">
+
+						<h3>Programming Resources</h3>
+						<ul>
+							<li><a href="http://www.youtube.com/user/StanfordUniversity"
+								target="_blank">Stanford</a></li>
+							<li><a href="http://www.youtube.com/user/MIT?feature=watch"
+								target="_blank">MIT</a></li>
+							<li><a href="http://stackoverflow.com/" target="_blank">Stackoverflow</a></li>
+
+						</ul>
+					</div>
+					<div class="span3" id="footerArea4">
+
+						<h3>Get in Touch</h3>
+
+						<ul id="contact-info">
+							<li><i class="social foundicon-skype icon"></i> <span
+								class="field">Skype:</span> <br /> cipriano.sanchez</li>
+							<li><i class="general foundicon-mail icon"></i> <span
+								class="field">Email:</span> <br /> <a
+								href="mailto:ciprianosanchez@gmail.com" title="Email">ciprianosanchez@gmail.com</a>
+							</li>
+
+						</ul>
+
+					</div>
+				</div>
+
+				<br /> <br />
+				<div class="row-fluid">
+					<div class="span12">
+						<p class="copyright">Copyright © 2013 Cipriano Sanchez. All
+							Rights Reserved.</p>
+
+						<p class="social_bookmarks">
+							<a href="https://twitter.com/bartzillacr" target="_blank"><i
+								class="social foundicon-twitter"></i> Twitter</a> <a
+								href="https://github.com/bartzilla" target="_blank"><i
+								class="social icon-github-alt"></i> GitHub</a> <a
+								href="http://stackoverflow.com/users/379119/bartzilla"
+								target="_blank"><i class="stackoverflow"></i>Stackoverflow</a> <a
+								href="http://instagram.com/_bartzilla" target="_blank"><i
+								class="social foundicon-instagram"></i> Instagram</a>
+						</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<br />
+	<br />
+	<br />
+
+	<script src="scripts/jquery.min.js" type="text/javascript"></script>
+	<script src="scripts/bootstrap/js/bootstrap.min.js"
+		type="text/javascript"></script>
+	<script src="scripts/default.js" type="text/javascript"></script>
+
+
+
+
+
+</body>
+</html>
